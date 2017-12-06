@@ -1,0 +1,35 @@
+$base-color: #46b18f;
+$mobile-header-height: 3.6rem;
+$mobile-swiper-height: 11rem;
+$mobile-search-line-height: 2.3rem;
+$mobile-search-padding-left: 0.8rem;
+$mobile-tab-active-color: #e22626;
+
+@mixin font-size($font-size){
+  $number: $font-size / 12;
+  font-size: $font-size / 16 + rem;
+  -webkit-transform : scale($number,$number);
+  -webkit-transform-origin: left;
+}
+
+@mixin mobile-header{
+  letter-spacing: 0.15rem;
+  height: $mobile-header-height;
+  background-color: $base-color;
+  z-index: 99999;
+}
+
+@mixin mobile-header-button{
+  margin: 0 1.5rem 0 0.5rem;
+}
+
+@mixin mobile-info-padding {
+  padding: 0 2rem 2.8rem;  
+}
+
+@mixin bullet-custom-color($color) {
+  border: 1px solid $color;
+  &.swiper-pagination-bullet-active {
+    background-color: $color;
+  }
+}

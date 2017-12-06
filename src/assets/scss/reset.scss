@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a,
+a:active,
+a:hover,
+a:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+html {
+  font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

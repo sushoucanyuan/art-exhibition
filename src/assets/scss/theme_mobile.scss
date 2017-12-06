@@ -1,0 +1,24 @@
+@import "./theme.scss";
+
+// 头部高度
+$header-height: 3.6rem;
+
+// 头部背景
+$header-backgroundColor: #49c19b;
+
+// 轮播高度
+$swiper-height: 11rem;
+
+// 两边内边距
+$main-padding: 2rem;
+
+// 更多信息上内边距
+$more-paddingTop: 1.5rem;
+
+// 字体设置
+@mixin font-size($font-size){
+  $number: $font-size / 12;
+  font-size: $font-size / 16 + rem;
+  -webkit-transform : scale($number,$number);
+  -webkit-transform-origin: left;
+}
