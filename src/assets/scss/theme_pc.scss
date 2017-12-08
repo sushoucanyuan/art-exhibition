@@ -1,5 +1,13 @@
 @import "./theme.scss";
 
-// 按钮颜色
-$button-color: #49c19b;
+$header-height: 80px;
+$main-width: 1040px;
+$mes-width: 560px;
+$side-width: ($main-width - $mes-width) / 2;
+$mes-padding: 80px;
 
+$title-color: #303234;
+$content-color: #7e8b9c;
+$link-color: #f97d56;
+$button-color: #49c19b;
+$mark-color: #e81919;

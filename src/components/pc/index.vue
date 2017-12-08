@@ -8,20 +8,21 @@
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
 
-    <div class="info mobile-info">
+    <div class="info pc-info">
 
       <div class="artist">
         <h4>艺术家</h4>
         <p>ARTISTS</p>
-        <swiper :options="infos_swiper">
+        <swiper :options="artists_swiper">
           <swiper-slide v-for="(item, index) in artists" :key="index">
             <img class="artist-img" :src="'static/index/' + item.src">
-            <div>
+            <div class="artist-info">
               <div class="artist-artist">
                 <span>{{item.name}}</span>
                 <span>{{item.date}}</span>
               </div>
               <p class="artist-description" v-for="(item,index) in item.descriptions" :key="index">{{item}}</p>              
+              <router-link class="artist-link" :to="{name: 'more-artists-detail', params: {index}}">艺术作品&gt;</router-link>
             </div>
           </swiper-slide>
           <div class="info-swiper-pagination" slot="pagination"></div>
@@ -31,7 +32,7 @@
       <div class="movie">
         <h4>影像视频</h4>
         <p>MOVIE PHOTO</p>
-        <swiper :options="infos_swiper">
+        <swiper :options="works_swiper">
           <swiper-slide class="movie-container" v-for="(item, index) in movies" :key="index">
             <img class="movie-img" :src="'static/index/' + item">
             <img class="movie-btn" src="../../assets/img/play_btn.png">
@@ -41,7 +42,6 @@
       </div>
 
     </div>
-
   </div>
 </template>
 
@@ -68,11 +68,24 @@
             }
           }
         },
-        infos_swiper: {
+        artists_swiper: {
+          loop: true,
+          slidesPerView: 3,
+          slidesPerGroup: 3,
+          spaceBetween: '12%',
+          pagination: {
+            el: '.info-swiper-pagination',
+            clickable: true,
+            renderBullet(index, className) {
+              return `<span class="${className} swiper-pagination-bullet-custom info-pagination"></span>`
+            }
+          }
+        },
+        works_swiper: {
           loop: true,
           slidesPerView: 2,
           slidesPerGroup: 2,
-          spaceBetween: '8%',
+          spaceBetween: '9%',
           pagination: {
             el: '.info-swiper-pagination',
             clickable: true,
@@ -91,23 +104,27 @@
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_mobile.scss";
+  @import "../../assets/scss/theme_pc.scss";
 
   #index {
-    > .swiper .swiper-img {
+    > .swiper {
       width: 100%;
-      height: $swiper-height;
+      .swiper-img {
+        display: block;
+        width: 100%;
+      }
     }
     > .info {
       > div {
-        padding-top: 1.2rem;
+        margin-top: 78px;
         > h4 {
-          font-size: 0.8rem;
+          color: $title-color;          
+          font-size: 35px;
         }
         > p {
-          font-size: 0.6rem;
-          margin-bottom: 1rem;
-          padding-left: 0.1rem;
+          color: $content-color;
+          margin: 7px 0 45px;
+          padding-left: 2px;
         }
         .info-swiper-pagination {
           text-align: center;
@@ -116,29 +133,37 @@
       > .artist {
         .artist-img {
           width: 100%;
-          height: 9rem;
+          height: 260px;
         }
         .artist-artist {
-          font-size: 0.75rem;
+          color: $title-color;
+          font-size: 20px;
           font-weight: bold;
-          line-height: 2rem;
           display: flex;
           justify-content: space-between;
+          margin: 10px 0;
         }
         .artist-description {
-          font-size: 0.5rem;
-          line-height: 1rem;
+          color: $main-width;
+          font-size: 14px;
+          line-height: 30px;
+        }
+        .artist-link{
+          color: $link-color;
+          display: inline-block;
+          margin: 20px 0 26px;
         }
       }
-      > .movie {
+      > .movie{
         .movie-container {
           position: relative;
+          margin-bottom: 40px;          
           .movie-img {
             width: 100%;
-            height: 6.8rem;
+            height: 300px;
           }
           .movie-btn {
-            $side-length: 1.8rem;
+            $side-length: 90px;
             position: absolute;
             top: 0;
             bottom: 0;
@@ -147,6 +172,7 @@
             width: $side-length;
             height: $side-length;
             margin: auto;
+            cursor: pointer;
           }
         }
       }

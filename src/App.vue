@@ -15,7 +15,7 @@
     // 全局轮播组件自定义按钮样式
     .swiper-pagination-bullet-custom {
       @mixin swiper-pagination-bullet-color($color) {
-        border: 1px solid $color;
+        border-color: $color;
         &.swiper-pagination-bullet-active {
           background-color: $color;
         }
@@ -27,6 +27,8 @@
       height: $side-length;
       margin: 0 0.4rem;
       border-radius: 50%;
+      border-width: 1px;
+      border-style: solid;
       background-color: transparent;
       &.header-pagination {
         @include swiper-pagination-bullet-color(#fff);

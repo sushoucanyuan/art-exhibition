@@ -29,7 +29,7 @@
       z-index: 99999;
     }
 
-    // 全局主体样式
+    // 主体样式
     .mobile-main {
       box-sizing: border-box;
       height: 100vh;
@@ -37,12 +37,12 @@
       overflow-y: auto;
     }
 
-    // 全局信息样式
+    // 信息样式
     .mobile-info {
       padding: 0 $main-padding 2.8rem;
     }
 
-    // 全局搜索框样式
+    // 搜索框样式
     .mobile-search {
       $side-length: 2.3rem;
       position: relative;

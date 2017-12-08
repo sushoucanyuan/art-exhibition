@@ -106,12 +106,9 @@
             overflow: hidden;
             text-overflow: ellipsis;
           }
-        }
-        .news-container:nth-child(odd){
-          padding-right: 0.4rem;
-        }        
+        }    
         .news-container:nth-child(even){
-          padding-left: 0.4rem;
+          padding-left: 0.8rem;
         }
       }
     }
