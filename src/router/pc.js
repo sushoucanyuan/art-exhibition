@@ -28,6 +28,12 @@ const moreArtists = () =>
 const moreWorks = () =>
   import ( /* webpackChunkName: "more-works" */ '@/components/pc/more-works.vue')
 
+const moreArtistsDetail = () =>
+  import ( /* webpackChunkName: "more-artists-detail" */ '@/components/pc/more-artists-detail.vue')
+
+const reportsDetail = () =>
+  import ( /* webpackChunkName: "reports-detail" */ '@/components/pc/reports-detail.vue')
+
 const pcMain = [
 {
   name: 'index',
@@ -49,7 +55,7 @@ const pcMain = [
   name: 'must-know',
   path: 'must-know',
   component: mustKonw
-},{
+}, {
   name: 'more-artists',
   path: 'more-artists',
   component: moreArtists
@@ -57,6 +63,15 @@ const pcMain = [
   name: 'more-works',
   path: 'more-works',
   component: moreWorks
+}, {
+  name: 'more-artists-detail',
+  props: true,
+  path: 'more-artists-detail/:id',
+  component: moreArtistsDetail
+}, {
+  name: 'reports-detail',
+  path: 'reports-detail',
+  component: reportsDetail
 }]
 
 const router = new Router({

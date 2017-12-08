@@ -58,7 +58,10 @@
         movies,
         imgs_swiper: {
           loop: true,
-          autoplay: 6000,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+          },
           autoplayDisableOnInteraction: false,
           pagination: {
             el: '.swiper-pagination',

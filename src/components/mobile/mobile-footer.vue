@@ -1,7 +1,7 @@
 <template>
   <footer id="mobile-footer">
     <div>
-      <img class="logo" src="static/logo_footer.png" alt="东湖雕塑生态双年展">
+      <img class="logo" src="static/logo_footer.png" data-rjs="3" alt="东湖雕塑生态双年展">
       <p>湖北省武汉市</p>
       <p>东湖高新区九蜂街道石门峰路9号</p>
       <p>联系电话：027-87635298</p>

@@ -1,10 +1,18 @@
 import Vue from 'vue'
 import retina from 'retinajs'
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
+import { Pagination } from 'element-ui'
+import { Header, Navbar, TabItem, Button } from 'mint-ui'
 
+Vue.use(Pagination)
+Vue.component(Button.name, Button)
+Vue.component(Header.name, Header)
+Vue.component(Navbar.name, Navbar)
+Vue.component(TabItem.name, TabItem)
+
+// retina
 window.addEventListener('load', retina)
 
+// rem
 let docEls = document.documentElement
 let resizeEvts = 'orientationchange' in window ? 'orientationchange' : 'resize'
 
@@ -16,5 +24,3 @@ let recalcs = function() {
 recalcs()
 
 window.addEventListener(resizeEvts, recalcs, false)
-
-Vue.use(MintUI)

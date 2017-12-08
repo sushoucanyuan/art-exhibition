@@ -2,7 +2,7 @@
   <div id="mobile-header">
 
     <mt-header fixed :title="$route.meta.title">
-      <img v-if="type == 'main'" slot="left" class="logo" src="static/logo_header.png" alt="东湖雕塑生态双年展" @click="$router.push({name: 'index'})">
+      <img v-if="type == 'main'" slot="left" class="logo" src="static/logo_header.png" data-rjs="3" alt="东湖雕塑生态双年展" @click="$router.push({name: 'index'})">
       <mt-button v-if="type == 'more'" slot="left" class="back" icon="back" @click="back">返回</mt-button>
       <mt-button slot="right" @click="opened = !opened" @blur.native="opened = false">
         <i slot="icon" class="icon-menu iconfont"></i>
@@ -31,7 +31,7 @@
       back() {
         this.$router.back()
       }
-    },
+    }
   }
 </script>
 
@@ -50,6 +50,7 @@
     }
     .icon-menu {
       font-size: 1.8rem;
+      line-height: 1;
       margin-right: 1rem;
     }
     nav {

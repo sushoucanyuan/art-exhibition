@@ -9,7 +9,7 @@
         <router-link class="pc-link" :to="{name: 'more-artists'}">更多艺术家</router-link>        
       </div>
 
-      <div class="artist" v-for="(item, index) in artists" :key="index">
+      <div class="artist" v-for="(item, index) in artists" :key="index" @click="$router.push({name: 'more-artists-detail', params:{id: 0}})">
         <img class="artist-img" :src="'static/artists/' + item.src">
         <div class="artist-info">
           <div class="artist-name pc-name">{{item.name}}</div>

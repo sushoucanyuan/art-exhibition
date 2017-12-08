@@ -69,6 +69,7 @@
     position: relative;
     > .mes {
       width: $mes-width;
+      min-height: 300px;
       margin: 0 auto;
       > .pc-search {
         margin: 30px 0;
