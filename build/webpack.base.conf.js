@@ -24,6 +24,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       '@': resolve('src'),
+      'swiper$': 'swiper/dist/js/swiper.js'
     }
   },
   module: {
@@ -36,7 +37,8 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test')],
+        exclude: [/(node_modules)(?![/|\\](swiper))/]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
