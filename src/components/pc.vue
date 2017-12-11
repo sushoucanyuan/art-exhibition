@@ -16,6 +16,13 @@
   @import "../assets/scss/theme_pc.scss";
 
   #pc {
+    // 覆盖面包屑组件样式
+    .el-breadcrumb__inner {
+      letter-spacing: $letter-spacing;
+      &:hover{
+        color: $mark-color;
+      }
+    }
     // 轮播自定义按钮
     .swiper-pagination-bullet-custom {
       $side-length: 14px;
@@ -29,7 +36,7 @@
       }
     }
     // 分页器样式重写
-    .el-pager > li.active{
+    .el-pager > li.active {
       $side-length: 24px;
       color: #fff;
       line-height: $side-length;
@@ -40,17 +47,11 @@
       background-color: $button-color;
     }
     //艺术家名字标红
-    .pc-name:hover{
+    .pc-name:hover {
       cursor: pointer;
       color: $mark-color !important;
     }
-    // 信息样式
-    .pc-info {
-      box-sizing: border-box;
-      width: $main-width;
-      margin: 0 auto;
-      padding: 0 20px 120px;
-    }
+
     // 链接样式
     .pc-link {
       cursor: pointer;
@@ -108,5 +109,15 @@
         background-color: rgb(233, 233, 233);
       }
     }
+
+    // 布局样式
+    $padding-bottom: 120px;
+    .pc-info {
+      box-sizing: border-box;
+      width: $main-width;
+      margin: 0 auto;
+      padding: 0 20px $padding-bottom;
+    }
+
   }
 </style>

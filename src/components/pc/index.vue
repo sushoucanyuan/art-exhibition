@@ -18,7 +18,7 @@
             <img class="artist-img" :src="'static/index/' + item.src">
             <div class="artist-info">
               <div class="artist-artist">
-                <span>{{item.name}}</span>
+                <span class="pc-name" @click="$router.push({name: 'more-artists-detail', params:{id: 0}})">{{item.name}}</span>
                 <span>{{item.date}}</span>
               </div>
               <p class="artist-description" v-for="(item,index) in item.descriptions" :key="index">{{item}}</p>              

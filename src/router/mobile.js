@@ -64,6 +64,7 @@ export default new Router({
     children: [{
       path: '/',
       component: main,
+      redirect: { name: 'index' },      
       children: mobileMain
     }, {
       name: 'more-works',

@@ -40,7 +40,7 @@
       <li class="link" title="查看更多作品" @click="$router.push({name: 'more-works'})">更多作品</li>
     </ul>
 
-    <div class="viewmore iconfont icon-menu" title="查看更多艺术家" @click="$router.push({name: 'more-artists'})"></div>
+    <div class="viewmore iconfont icon-menu" title="查看更多艺术家" @click="$router.push({name: 'more-works'})"></div>
 
   </div>
 </template>

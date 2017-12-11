@@ -1,19 +1,29 @@
 <template>
   <div id="more-artists">
 
-    <div class="pc-info">
+    <div class="pc-subpage-info">
 
-      <div class="link">
-        <router-link class="pc-link" :to="{name: 'artists-and-works'}">参展艺术家·作品</router-link>
-        &nbsp;&gt;&nbsp;
-        <router-link class="pc-link" :to="{name: 'more-artists'}">更多艺术家</router-link>        
+      <el-breadcrumb class="pc-subpage-breadcrumb" separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{name: 'artists-and-works'}">参展艺术家·作品</el-breadcrumb-item>
+        <el-breadcrumb-item>更多艺术家</el-breadcrumb-item>
+      </el-breadcrumb>
+
+      <div class="pc-subpage-radio">
+        <i class="artists icon-accountfilling active"></i>
+        <i class="works icon-pic-filling not-active" @click="$router.push({name: 'more-works'})"></i>
       </div>
 
-      <div class="artist" v-for="(item, index) in artists" :key="index" @click="$router.push({name: 'more-artists-detail', params:{id: 0}})">
-        <img class="artist-img" :src="'static/artists/' + item.src">
-        <div class="artist-info">
-          <div class="artist-name pc-name">{{item.name}}</div>
-          <div class="artist-description">{{item.description}}</div>
+      <div class="pc-subpage-list-item" v-for="(item, index) in artists" :key="index">
+        <img class="pc-subpage-img" :src="'static/artists/' + item.src">
+        <div class="pc-subpage-introduce">
+          <div class="pc-subpage-title">
+            <div class="pc-subpage-maintitle pc-name">
+              <el-tooltip effect="dark" content="点击查看详细信息" placement="top">
+                <span @click="$router.push({name: 'more-artists-detail', params:{id: 0}})">{{item.name}}</span>
+              </el-tooltip>
+            </div>
+          </div>
+          <div class="pc-subpage-description">{{item.description}}</div>
         </div>
       </div>
 
@@ -35,51 +45,5 @@
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_pc.scss";
-
-  #more-artists {
-    > .pc-info {
-      padding-left: $mes-padding;
-      padding-right: $mes-padding;
-      > .link {
-        cursor: pointer;
-        margin: 30px 0 60px 10px;
-        .pc-link {
-          font-size: 14px;
-          line-height: 24px;
-        }
-      }
-      > .artist {
-        $img-width: 34%;
-        $info-width: 60%;
-        &:nth-last-child(n+2){
-          margin-bottom: 50px;
-        }
-        > .artist-img {
-          vertical-align: top;
-          display: inline-block;
-          width: $img-width;
-          margin-right: 99% - $img-width - $info-width;
-        }
-        > .artist-info {
-          vertical-align: top;
-          display: inline-block;
-          width: $info-width;
-          > .artist-name {
-            color: $title-color;
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-          }
-          > .artist-description {
-            color: $content-color;            
-            font-size: 16px;
-            line-height: 2;
-            letter-spacing: 2px;
-          }
-        }
-      }
-    }
-  }
+  @import "../../assets/scss/pc/subpage.scss";
 </style>
