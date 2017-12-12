@@ -3,9 +3,9 @@
 
     <div class="mes">
 
-      <div class="pc-search">
+      <!-- <div class="pc-search">
         <input type="text">      
-      </div>
+      </div> -->
 
       <div class="imgs">
 
@@ -84,7 +84,7 @@
     position: relative;
     > .mes {
       width: $mes-width;
-      margin: 0 auto;
+      margin: 30px auto 0;
       > .pc-search {
         margin: 30px 0;
       }

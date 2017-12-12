@@ -15,14 +15,27 @@
 <style lang="scss">
   @import "../assets/scss/theme_pc.scss";
 
-  #pc {
-    // 覆盖面包屑组件样式
-    .el-breadcrumb__inner {
-      letter-spacing: $letter-spacing;
-      &:hover{
-        color: $mark-color;
-      }
+  // 覆盖面包屑组件样式
+  .el-breadcrumb__inner {
+    letter-spacing: $letter-spacing;
+    &:hover {
+      color: $mark-color;
     }
+  }
+
+  // 分页器样式重写
+  .el-pager > li.active {
+    $side-length: 24px;
+    color: #fff;
+    line-height: $side-length;
+    width: $side-length;
+    height: $side-length;
+    min-width: auto;
+    border-radius: 50%;
+    background-color: $button-color;
+  }
+
+  #pc {
     // 轮播自定义按钮
     .swiper-pagination-bullet-custom {
       $side-length: 14px;
@@ -35,17 +48,7 @@
         opacity: 1;
       }
     }
-    // 分页器样式重写
-    .el-pager > li.active {
-      $side-length: 24px;
-      color: #fff;
-      line-height: $side-length;
-      width: $side-length;
-      height: $side-length;
-      min-width: auto;
-      border-radius: 50%;
-      background-color: $button-color;
-    }
+
     //艺术家名字标红
     .pc-name:hover {
       cursor: pointer;
@@ -118,6 +121,5 @@
       margin: 0 auto;
       padding: 0 20px $padding-bottom;
     }
-
   }
 </style>

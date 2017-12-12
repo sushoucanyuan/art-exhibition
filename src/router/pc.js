@@ -5,34 +5,34 @@ const pc = () =>
   import ( /* webpackChunkName: "pc" */ '@/components/pc.vue')
 
 const main = () =>
-  import ( /* webpackChunkName: "main" */ '@/components/pc/main.vue')
+  import ( /* webpackChunkName: "pc-main" */ '@/components/pc/main.vue')
 
 const index = () =>
-  import ( /* webpackChunkName: "index" */ '@/components/pc/index.vue')
+  import ( /* webpackChunkName: "pc-index" */ '@/components/pc/index.vue')
 
 const aboutUs = () =>
-  import ( /* webpackChunkName: "aboutUs" */ '@/components/pc/about-us.vue')
+  import ( /* webpackChunkName: "pc-aboutUs" */ '@/components/pc/about-us.vue')
 
 const artistsAndWorks = () =>
-  import ( /* webpackChunkName: "artists-and-works" */ '@/components/pc/artists-and-works.vue')
+  import ( /* webpackChunkName: "pc-artists-and-works" */ '@/components/pc/artists-and-works.vue')
 
 const reports = () =>
-  import ( /* webpackChunkName: "reports" */ '@/components/pc/reports.vue')
+  import ( /* webpackChunkName: "pc-reports" */ '@/components/pc/reports.vue')
 
 const mustKonw = () =>
-  import ( /* webpackChunkName: "must-know" */ '@/components/pc/must-know.vue')
+  import ( /* webpackChunkName: "pc-must-know" */ '@/components/pc/must-know.vue')
 
 const moreArtists = () =>
-  import ( /* webpackChunkName: "more-artists" */ '@/components/pc/more-artists.vue')
+  import ( /* webpackChunkName: "pc-more-artists" */ '@/components/pc/more-artists.vue')
 
 const moreWorks = () =>
-  import ( /* webpackChunkName: "more-works" */ '@/components/pc/more-works.vue')
+  import ( /* webpackChunkName: "pc-more-works" */ '@/components/pc/more-works.vue')
 
 const moreArtistsDetail = () =>
-  import ( /* webpackChunkName: "more-artists-detail" */ '@/components/pc/more-artists-detail.vue')
+  import ( /* webpackChunkName: "pc-more-artists-detail" */ '@/components/pc/more-artists-detail.vue')
 
 const reportsDetail = () =>
-  import ( /* webpackChunkName: "reports-detail" */ '@/components/pc/reports-detail.vue')
+  import ( /* webpackChunkName: "pc-reports-detail" */ '@/components/pc/reports-detail.vue')
 
 const pcMain = [
 {

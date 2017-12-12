@@ -89,20 +89,6 @@
   @import "../../assets/scss/theme_pc.scss";
 
   #more-artists-detail {
-    > .link-container {
-      box-sizing: border-box;
-      width: $main-width;
-      margin: 0 auto;
-      padding: 0 $mes-padding 0;
-      > .link {
-        cursor: pointer;
-        margin: 30px 0 60px 10px;
-        .pc-link {
-          font-size: 14px;
-          line-height: 24px;
-        }
-      }
-    }
     > .artist {
       $button: 75px;
       @mixin main {

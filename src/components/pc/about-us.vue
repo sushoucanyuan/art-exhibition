@@ -3,27 +3,15 @@
 
     <img src="static/about_us/header.png">
 
-    <div class="info pc-info">
+    <div class="main">
+
+      <div class="info">
+        <component :is="component"></component>
+      </div>
 
       <div class="nav">
         <div v-for="(item, index) in links" :key="index">
-          <a class="pc-link" :class="{'pc-link-active': linkActive == index}" @click="linkActive = index">{{item}}</a>
-        </div>
-      </div>
-
-      <div class="mes">
-
-        <div v-if="linkActive == '0'">
-          <h4>双年展是什么？</h4>
-          <p>xxxxx</p>
-          <p>sssss</p>
-          <img src="static/about_us/about_us.png">
-        </div>
-        <div v-if="linkActive == '1'">
-        </div>        
-        <div v-if="linkActive == '2'">
-        </div>        
-        <div v-if="linkActive == '3'">
+          <a class="pc-link" :class="{'active': component == item.component}" @click="component = item.component">{{item.name}}</a>
         </div>
       </div>
 
@@ -33,64 +21,96 @@
 </template>
 
 <script>
+  import aboutExhibition from './about-us/about-exhibition.vue'
+  import callForPapers from './about-us/call-for-papers.vue'
+  import logoDesign from './about-us/logo-design.vue'
+
   export default {
     data() {
       return {
-        links: ['关于双年展', '征稿启示', 'LOGO设计', '艺术委员会'],
-        linkActive: '0'
+        links: [{
+          name: '关于双年展',
+          component: 'aboutExhibition'
+        }, {
+          name: '征稿启示',
+          component: 'callForPapers'
+        }, {
+          name: 'LOGO设计',
+          component: 'logoDesign'
+        }, {
+          name: '艺术委员会',
+          component: ''
+        }],
+        component: 'aboutExhibition'
       }
+    },
+    components: {
+      aboutExhibition,
+      callForPapers,
+      logoDesign
     }
   }
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_pc.scss";
+  @import "../../assets/scss/pc/theme.scss";
 
   #about-us {
     > img {
       display: block;
       width: 100%;
     }
-    > .info {
+    > .main {
+      $nav-widh: 120px;
+      $info-width: 680px;
+      $space-betewwn: 60px;
+      display: flex;
+      justify-content: center;
+      width: $main-width;
+      margin: 50px auto 0;
+      padding: 0 $main-padding;
       position: relative;
-      margin-top: 50px;
-      > .nav {
-        position: absolute;
-        top: 0;
-        right: 0;
-        box-sizing: border-box;
-        width: $side-width;
-        padding-left: 60px;
-        > div > a {
-          $height: 30px;
-          line-height: $height;
-          height: $height;
-          margin: 5px 0;
-          &.pc-link-active {
-            font-weight: bold;
-            font-size: 14px;
-          }
-        }
-      }
-      > .mes {
-        width: $mes-width;
-        margin: 0 auto;
+      > .info {
+        width: $info-width;
+        margin-right: $space-betewwn;
         > div {
-          h4,
-          p {
+          > h3,
+          > h4,
+           p,
+          img {
             margin-bottom: 18px;
           }
-          h4 {
+          > h3 {
             color: $title-color;
+            letter-spacing: 2px;
+          }
+          > h4,
+          > p {
+            color: $content-color;
+            line-height: 26px;
             letter-spacing: 1px;
           }
-          p {
-            color: $content-color;
-            line-height: 20px;
+          > p.indent {
+            text-indent: 2em;
           }
           > img {
             display: block;
             width: 100%;
+          }
+        }
+      }
+      > .nav {
+        width: $nav-widh;
+        a {
+          $height: 30px;
+          font-size: 14px;
+          line-height: $height;
+          height: $height;
+          margin: 5px 0;
+          &.active {
+            color: $mark-color;
+            font-weight: bold;
+            font-size: 16px;
           }
         }
       }
