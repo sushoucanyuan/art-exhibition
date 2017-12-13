@@ -1,15 +1,13 @@
 <template>
   <div id="more-artists-detail">
 
-    <div class="link-container">
+    <div class="pc-subpage-info">
 
-      <div class="link">
-        <router-link class="pc-link" :to="{name: 'artists-and-works'}">参展艺术家·作品</router-link>
-        &nbsp;&gt;&nbsp;
-        <router-link class="pc-link" :to="{name: 'more-artists'}">更多艺术家</router-link>        
-        &nbsp;&gt;&nbsp;
-        <router-link class="pc-link" :to="{name: 'more-artists-detail', params:{id}}">{{name}}</router-link>  
-      </div>
+      <el-breadcrumb class="pc-subpage-breadcrumb" separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{name: 'artists-and-works'}">参展艺术家·作品</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{name: 'more-artists'}">更多艺术家</el-breadcrumb-item>        
+        <el-breadcrumb-item>更多艺术家</el-breadcrumb-item>
+      </el-breadcrumb>
 
     </div>
 
@@ -18,15 +16,14 @@
         <div class="first">
           <div>
             <div>
-              <p >{{item.name}}</p>
-              <p >{{item.work}}</p>            
+              <p >{{item.name}}</p>          
             </div>
             <img :src="'static/artists-detail/' + item.src">            
           </div>
         </div>
         <div class="second">
           <div class="artist-info">
-            <h6>{{item.h}}</h6>
+            <h6>{{item.work}}</h6>
             <p v-for="(item, index) in item.p" :key="index">{{item}}</p>
           </div>
           <img :src="'static/artists-detail/' + item.img">
@@ -40,8 +37,7 @@
 </template>
 
 <script>
-  import 'swiper/dist/css/swiper.css'
-  import { swiper, swiperSlide } from 'vue-awesome-swiper'
+ // import { getOneArtist } from '@/api'
   import { artists } from '@/assets/data/artists-detail'
 
   export default {
@@ -73,10 +69,11 @@
         else return 0
       }
     },
-    components: {
-      swiper,
-      swiperSlide
-    },
+    // beforeMount() {
+    //   this.getOneArtist().then(({ data }) => {
+
+    //   })
+    // },
     beforeRouteEnter(to, from, next) {
       next(vm => {
         vm.swiper.slideTo(vm.id, 0, false)

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="more-works">
 
     <div class="pc-subpage-info">
 
@@ -13,26 +13,15 @@
         <i class="works icon-pic-filling active"></i>
       </div>
 
-      <div class="line" v-for="(item, index) in gallery" :key="index">
+      <div class="work" v-for="item in gallery" :key="item.id">
         <div v-for="(item, index) in item" :key="index">
-          <img class="work-img" :src="'static/works/' + item.src">
+          <img class="work-img" :src="'static/works/' + item.img">
           <div class="work-info">
             <div class="work-name">{{item.name}}</div>
             <div v-if="item.author" class="work-author">{{item.author}}</div>
           </div>
         </div>
       </div>
-<!-- 
-      <div class="pc-subpage-list-item" v-for="(item, index) in works" :key="index">
-        <img class="pc-subpage-img" :src="'static/works/' + item.src">
-        <div class="pc-subpage-introduce">
-          <div class="pc-subpage-title">
-            <div class="pc-subpage-maintitle">{{item.name}}</div>
-            <div class="pc-subpage-subtitle" v-if="item.author">{{item.author}}</div>
-          </div>
-          <div class="pc-subpage-description">{{item.description}}</div>
-        </div>
-      </div> -->
 
     </div>
 
@@ -40,26 +29,32 @@
 </template>
 
 <script>
-  import "../../assets/scss/pc/subpage.scss"
-  import { imgs } from '@/assets/data/works'
+  import { getAllWorks } from '@/api'
 
   export default {
     data() {
       return {
-        imgs,
         gallery: []
       }
     },
+    methods:{
+      getAllWorks
+    },
     beforeMount() {
-      for (let i = 0; i < this.imgs.length; i += 3) {
-        this.gallery.push(this.imgs.slice(i, i + 3))
-      }
+      this.getAllWorks().then(({ data }) => {
+        let works = data.allWorks
+        for (let i = 0; i < works.length; i += 3) {
+          this.gallery.push(works.slice(i, i + 3))
+        }        
+      })
     }
   }
 </script>
 
 <style lang="scss">
-  .line {
+  @import "../../assets/scss/pc/main.scss";
+
+  .work {
     display: flex;
     justify-content: space-between;
     width: 100%;

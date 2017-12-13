@@ -1,0 +1,44 @@
+@import "./theme.scss";
+.pc-subpage-info {
+  position: relative;
+  box-sizing: border-box;
+  width: $main-width;
+  margin: 0 auto;
+  padding: 0 $subpage-padding;
+}
+
+.pc-subpage-breadcrumb {
+  margin: 35px 0 65px 10px;
+}
+
+.pc-subpage-radio {
+  font-size: 0;
+  position: absolute;
+  top: 0;
+  right: $subpage-padding;
+  >i {
+    $side-length: 36px;
+    $color: rgba(1, 1, 1, 0.4);
+    $active-color: rgb(1, 1, 1);
+    color: $color;
+    font-size: 22px;
+    line-height: $side-length;
+    text-align: center;
+    display: inline-block;
+    width: $side-length;
+    border: 1px solid $color;
+    &.artists {
+      border-right: 1px solid $active-color;
+    }
+    &.works {
+      border-left: none;
+    }
+    &.active {
+      color: $mark-color;
+      border-color: $active-color;
+    }
+    &.not-active {
+      cursor: pointer;
+    }
+  }
+}

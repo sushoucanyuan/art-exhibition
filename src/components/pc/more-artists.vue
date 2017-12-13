@@ -13,17 +13,17 @@
         <i class="works icon-pic-filling not-active" @click="$router.push({name: 'more-works'})"></i>
       </div>
 
-      <div class="pc-subpage-list-item" v-for="(item, index) in artists" :key="index">
-        <img class="pc-subpage-img" :src="'static/artists/' + item.src">
-        <div class="pc-subpage-introduce">
-          <div class="pc-subpage-title">
-            <div class="pc-subpage-maintitle pc-name">
-              <el-tooltip effect="dark" content="点击查看详细信息" placement="top">
-                <span @click="$router.push({name: 'more-artists-detail', params:{id: 0}})">{{item.name}}</span>
+      <div class="artist" v-for="item in artists" :key="item.id">
+        <img class="artist-img" :src="'static/artists/' + item.img">
+        <div class="artist-introduce">
+          <div class="artist-title">
+            <div class="artist-maintitle">
+              <el-tooltip class="pc-name" effect="dark" content="点击查看详细信息" placement="top">
+                <span @click="$router.push({name: 'more-artists-detail', params:{id: item.id}})">{{item.name}}</span>
               </el-tooltip>
             </div>
           </div>
-          <div class="pc-subpage-description">{{item.description}}</div>
+          <div class="artist-brief">{{item.brief}}</div>
         </div>
       </div>
 
@@ -33,17 +33,64 @@
 </template>
 
 <script>
-  import { artists } from '@/assets/data/artists'
+  import { getAllArtists } from '@/api'
 
   export default {
     data() {
       return {
-        artists
+        artists: []
       }
+    },
+    methods: {
+      getAllArtists
+    },
+    beforeMount() {
+      this.getAllArtists().then(({ data }) => {
+        this.artists = data.allArtists
+      })
     }
   }
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/pc/subpage.scss";
+  @import "../../assets/scss/pc/main.scss";
+  @import "../../assets/scss/pc/theme.scss";
+
+  #more-artists {
+    $img-width: 36%;
+    $introduce-width: 56%;
+    .artist {
+      font-size: 0;
+      margin-bottom: 50px;
+      > img,
+      > div {
+        vertical-align: top;
+        display: inline-block;
+      }
+      > .artist-img {
+        width: $img-width;
+        margin-right: 99% - $img-width - $introduce-width;
+      }
+      > .artist-introduce {
+        width: $introduce-width;
+        .artist-title {
+          margin-bottom: 15px;
+          > div {
+            letter-spacing: 4px;
+          }
+          > .artist-maintitle {
+            color: $title-color;
+            font-size: 22px;
+            font-weight: bold;
+          }
+        }
+        .artist-brief {
+          color: $content-color;
+          font-size: 15px;
+          line-height: 1.5;
+          letter-spacing: 2px;
+        }
+      }
+    }
+  }
 </style>

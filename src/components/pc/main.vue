@@ -2,12 +2,12 @@
   <div id="main">
 
     <header>
-      <img class="logo" src="static/logo_header.png" alt="东湖雕塑生态双年展" @click="$router.push({name: 'index'})">
+      <img class="logo" src="static/logo.png" alt="东湖雕塑生态双年展" @click="$router.push({name: 'index'})">
       <nav>
-        <router-link class="pc-link" :to="{name: 'about-us'}" active-class="pc-link-active">关于我们</router-link>
-        <router-link class="pc-link" :to="{name: 'artists-and-works'}" active-class="pc-link-active">参展艺术家·作品</router-link>
-        <router-link class="pc-link" :to="{name: 'reports'}" active-class="pc-link-active">展览报道</router-link>
-        <router-link class="pc-link" :to="{name: 'must-know'}" active-class="pc-link-active">观展须知</router-link>
+        <router-link class="link" :to="{name: 'about-us'}" active-class="link-active">关于我们</router-link>
+        <router-link class="link" :to="{name: 'artists-and-works'}" active-class="link-active">参展艺术家·作品</router-link>
+        <router-link class="link" :to="{name: 'reports'}" active-class="link-active">展览报道</router-link>
+        <router-link class="link" :to="{name: 'must-know'}" active-class="link-active">观展须知</router-link>
       </nav>
       <div class="pc-search">
         <input type="text" placeholder="查询信息">      
@@ -24,7 +24,7 @@
 
     <footer>
       <div>
-        <img class="logo" src="static/logo_footer.png" alt="东湖雕塑生态双年展">
+        <img class="logo" src="static/logo.png" alt="东湖雕塑生态双年展">
       </div>
       <div>
         <div>
@@ -45,10 +45,10 @@
         </div>
         <div>
           <div>
-            <p>关于我们</p>
-            <p>参展艺术家·作品</p>
-            <p>展览报道</p>
-            <p>观展需知</p>            
+            <router-link class="link" tag="p" :to="{name: 'about-us'}">关于我们</router-link>
+            <router-link class="link" tag="p" :to="{name: 'artists-and-works'}">参展艺术家·作品</router-link>
+            <router-link class="link" tag="p" :to="{name: 'reports'}">展览报道</router-link>
+            <router-link class="link" tag="p" :to="{name: 'must-know'}">观展须知</router-link>     
           </div>
           <div>
             <p>武汉天气</p>
@@ -90,19 +90,36 @@
       background-color: #f9f9f9;
       > .logo {
         cursor: pointer;
+        margin-top: 10px;
         width: 140px;
-        height: 100%;
         position: absolute;
         left: 40px;
         top: 0;
       }
       > nav {
         display: inline-block;
-        > a {
-          $link-height: 20px;
-          height: $link-height;
-          margin: ($header-height - $link-height)/2 0;
-          margin-right: 36px;
+        > .link {
+          @mixin active{
+            border-radius: 30px;
+            color: #fff;
+            background-color: #49c19b;
+          }
+          $height: 40px;
+          color: $title-color;
+          line-height: $height;
+          display: inline-block;
+          box-sizing: border-box;
+          height: $height;
+          margin: ($header-height - $height)/2 0;
+          margin-right: 26px;
+          padding: 0 20px;
+          transition: .4s;
+          &:hover {
+            @include active;
+          }
+          &.link-active {
+            @include active;
+          }
         }
       }
       .pc-search {
@@ -119,6 +136,7 @@
     > footer {
       min-width: $main-width;
       background-color: $footer-backgroundColor;
+      margin-top: 80px;
       padding-top: 20px;
       padding-bottom: 35px;
       > div {
@@ -143,13 +161,16 @@
                 line-height: $p-height;
               }
             }
-            img{
+            img {
               width: 25px;
             }
           }
         }
         > .logo {
           height: 80px;
+        }
+        .link{
+          cursor: pointer;
         }
       }
     }
