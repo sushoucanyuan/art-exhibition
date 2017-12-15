@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import pcRouter from './router/pc'
 import mobileRouter from './router/mobile'
+import moment from './commons/moment'
 
+Vue.use(moment)
 //import mock from './mock'
 
 import App from './App'

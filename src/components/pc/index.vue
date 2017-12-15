@@ -37,7 +37,8 @@
             <p class="news-content">{{firstNews.info}}</p>              
             <button class="news-link" @click="$router.push({name: 'reports-detail', params: {id: 0}})">查看详情</button>            
           </div>
-          <img class="news-img" src="/static/reports/news_1.png">          
+          <img v-if="firstNews.picurl" class="news-img" :src="firstNews.picurl">          
+          <img v-else class="news-img" src="/static/reports/news_1.png">
         </div>
         <div class="news-latest">
           <div v-for="item in newsList" :key="item.id">
@@ -51,8 +52,9 @@
         <h4 class="title">影像视频</h4>
         <p class="subtitle">MOVIE PHOTO</p>
         <swiper :options="works_swiper">
-          <swiper-slide class="movie-container" v-for="(item, index) in movies" :key="index">
-            <video class="movie-img" :src="item" controls preload="auto" loop></video>
+          <swiper-slide v-for="(item, index) in movies" :key="index">
+            <video class="movie-video" :src="item" controls preload="auto" loop></video>
+            <div class="movie-title">{{item.title}}</div>
           </swiper-slide>
           <div class="info-swiper-pagination" slot="pagination"></div>
         </swiper>
@@ -63,16 +65,36 @@
 </template>
 
 <script>
-  import { imgs, movies } from '@/assets/data/index'
   import { getTopAuthorList, getTopNewsList } from '@/api'
 
   export default {
     data() {
       return {
-        imgs,
-        news: [],
+        imgs: [
+          'swiper1.png',
+          'swiper1.png',
+          'swiper1.png'
+        ],
         artists: [],
-        movies,
+        news: [],
+        movies: [
+          {
+            src: 'http://opm06mqes.bkt.clouddn.com/%E6%B1%A4%E6%9D%B0%E8%A7%86%E9%A2%91%E5%90%88%E9%9B%86.mp4',
+            title: '1'
+          },
+          {
+            src: 'http://opm06mqes.bkt.clouddn.com/%E7%B2%AE%E9%A3%9F%E7%9A%84%E5%AE%B9%E5%99%A8%EF%BC%88%E8%A7%86%E9%A2%91%E5%AE%8C%E6%88%90%E7%89%88%EF%BC%89.mp4',
+            title: '2'
+          },
+          {
+            src: 'http://opm06mqes.bkt.clouddn.com/%E8%94%A1%E9%9B%85%E7%8E%B2%E4%BD%9C%E5%93%81%E5%88%B6%E4%BD%9C%E8%A7%86%E9%A2%91.mp4',
+            title: '3'
+          },
+          {
+            src: 'http://opm06mqes.bkt.clouddn.com/%E9%9D%B3%E6%96%87%E9%BE%99%E4%B8%AA%E4%BA%BA%E8%A7%86%E9%A2%91.mp4',
+            title: '4'
+          }
+        ],
         imgs_swiper: {
           loop: true,
           autoplay: {
@@ -115,11 +137,11 @@
         }
       }
     },
-    computed:{
-      firstNews(){
+    computed: {
+      firstNews() {
         return this.news[0]
       },
-      newsList(){
+      newsList() {
         return this.news.slice(1)
       }
     },
@@ -272,25 +294,15 @@
         }
       }
       > .movie {
-        .movie-container {
-          position: relative;
-          .movie-img {
-            display: block;
-            width: 100%;
-            height: 300px;
-          }
-          .movie-btn {
-            $side-length: 90px;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: $side-length;
-            height: $side-length;
-            margin: auto;
-            cursor: pointer;
-          }
+        .movie-video {
+          display: block;
+          width: 100%;
+          height: 300px;
+        }
+        .movie-name {
+          color: $title-color;
+          font-family: bold;
+          line-height: 30px;
         }
       }
     }

@@ -9,8 +9,8 @@ export const getTopNewsList = () =>
       paperIndex: 0
     }
   }).then(({ data }) => data.map(item => {
-    let { id, title, info } = item
-    return { id, title, info }
+    let { id, title, picurl, info } = item
+    return { id, title,picurl, info }
   }))
 
 export const getTopAuthorList = () =>
