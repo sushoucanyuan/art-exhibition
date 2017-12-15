@@ -34,7 +34,7 @@
         <div class="news-main">
           <div class="news-info">
             <h4 class="title">{{firstNews.title}}</h4>
-            <p class="news-content">为贯彻落实市委陈一新书记“关于创建武汉东湖国际雕塑双年展和雕塑公园的重要批示”，力争以“对标世界一流，规划研究和打造具有世最高水平，代表城市发展最高成就的现代化、国际化.....</p>              
+            <p class="news-content">{{firstNews.info}}</p>              
             <button class="news-link" @click="$router.push({name: 'reports-detail', params: {id: 0}})">查看详情</button>            
           </div>
           <img class="news-img" src="/static/reports/news_1.png">          
