@@ -2,8 +2,12 @@
 $main-width: 1040px;
 $main-padding: 20px;
 $subpage-padding: 100px;
+$info-width: 560px;
+$side-width: ($main-width - $info-width) / 2 - 20px;
+$button-position: 7.2%;
 // 样式
 $title-color:#303234;
 $content-color: #414141;
 $mark-color: #e81919;
 $shadow-color: rgba(224, 224, 224, 0.9);
+$img-backgroundColor: rgba(241, 236, 236, 0.6);

@@ -12,7 +12,13 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 import 'swiper/dist/css/swiper.css'
 
-Vue.use(Lazyload)
+Vue.use(Lazyload, {
+  preLoad: 1.3,
+  error: '/static/error.png',
+  loading: '/static/loading.gif',
+  attempt: 1
+})
+
 Vue.use(Tooltip)
 Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)

@@ -3,7 +3,7 @@
 
     <swiper class="swiper" :options="imgs_swiper">
       <swiper-slide v-for="(item, index) in imgs" :key="index">
-        <img class="swiper-img" :src="'static/index/' + item">
+        <img class="swiper-img" :src="'/static/index/' + item">
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -16,15 +16,13 @@
         <swiper ref="artists_swiper" :options="artists_swiper">
           <swiper-slide v-for="(item, index) in artists" :key="item.id">
             <div style="position: relative;">
-              <!-- <img class="artist-img swiper-lazy" :src="index < 3 ? ('static/artists/' + item.img) : ''" :data-src="index < 3 ? '' : ('static/artists/' + item.img)">
-              <div v-if="index > 3" class="swiper-lazy-preloader"></div>               -->
-              <img class="artist-img" :src="'static/artists/' + item.img"/>
+              <img class="artist-img" :src="item.picurl"/>
             </div>
             <div>
               <div class="artist-name">
                 <span class="pc-name" @click="$router.push({name: 'more-artists-detail', params:{id: item.id}})">{{item.name}}</span>
               </div>
-              <pre class="artist-brief">{{item.brief}}</pre>              
+              <pre class="artist-brief">{{item.info}}</pre>              
               <router-link class="artist-link" :to="{name: 'more-artists-detail', params: {id: item.id}}">艺术作品 &gt;</router-link>
             </div>
           </swiper-slide>
@@ -35,16 +33,16 @@
       <div class="news">
         <div class="news-main">
           <div class="news-info">
-            <h4 class="title">27度角——东湖国际生态雕塑双年展</h4>
+            <h4 class="title">{{firstNews.title}}</h4>
             <p class="news-content">为贯彻落实市委陈一新书记“关于创建武汉东湖国际雕塑双年展和雕塑公园的重要批示”，力争以“对标世界一流，规划研究和打造具有世最高水平，代表城市发展最高成就的现代化、国际化.....</p>              
             <button class="news-link" @click="$router.push({name: 'reports-detail', params: {id: 0}})">查看详情</button>            
           </div>
-          <img class="news-img" src="static/reports/news_1.png">          
+          <img class="news-img" src="/static/reports/news_1.png">          
         </div>
         <div class="news-latest">
-          <div v-for="item in news" :key="item.id">
+          <div v-for="item in newsList" :key="item.id">
             <h4 class="news-title">{{item.title}}</h4>
-            <p class="news-content">{{item.content}}</p>            
+            <p class="news-content">{{item.info}}</p>            
           </div>
         </div>
       </div>
@@ -54,8 +52,7 @@
         <p class="subtitle">MOVIE PHOTO</p>
         <swiper :options="works_swiper">
           <swiper-slide class="movie-container" v-for="(item, index) in movies" :key="index">
-            <img class="movie-img" :src="'static/index/' + item">
-            <img class="movie-btn" src="../../assets/img/play_btn.png">
+            <video class="movie-img" :src="item" controls preload="auto" loop></video>
           </swiper-slide>
           <div class="info-swiper-pagination" slot="pagination"></div>
         </swiper>
@@ -67,7 +64,7 @@
 
 <script>
   import { imgs, movies } from '@/assets/data/index'
-  import { getIndexArtists, getLatestNews } from '@/api'
+  import { getTopAuthorList, getTopNewsList } from '@/api'
 
   export default {
     data() {
@@ -92,8 +89,6 @@
           }
         },
         artists_swiper: {
-          // lazy: true,
-          // preloadImages: false,
           slidesPerView: 3,
           slidesPerGroup: 3,
           spaceBetween: '8%',
@@ -120,16 +115,24 @@
         }
       }
     },
+    computed:{
+      firstNews(){
+        return this.news[0]
+      },
+      newsList(){
+        return this.news.slice(1)
+      }
+    },
     methods: {
-      getIndexArtists,
-      getLatestNews
+      getTopAuthorList,
+      getTopNewsList
     },
     beforeMount() {
-      this.getIndexArtists().then(({ data }) => {
-        this.artists = data.artists
+      this.getTopAuthorList().then(artists => {
+        this.artists = artists
       })
-      this.getLatestNews().then(({ data }) => {
-        this.news = data.news
+      this.getTopNewsList().then(news => {
+        this.news = news
       })
     }
   }
@@ -258,7 +261,7 @@
               margin-bottom: 5px;
             }
             > .news-content {
-              font-size: 14px;    
+              font-size: 14px;
               color: $content-color;
               line-height: $line-height;
               height: $line-height*3;

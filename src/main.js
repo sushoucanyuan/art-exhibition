@@ -2,7 +2,7 @@ import Vue from 'vue'
 import pcRouter from './router/pc'
 import mobileRouter from './router/mobile'
 
-import mock from './mock'
+//import mock from './mock'
 
 import App from './App'
 

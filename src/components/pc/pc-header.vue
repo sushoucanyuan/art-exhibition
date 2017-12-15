@@ -1,6 +1,6 @@
 <template>
   <header id="pc-header">
-    <img class="logo" src="static/logo_header.png" alt="东湖雕塑生态双年展" @click="$router.push({name: 'index'})">
+    <img class="logo" src="/static/logo_header.png" alt="东湖雕塑生态双年展" @click="$router.push({name: 'index'})">
     <nav>
       <router-link class="pc-link" :to="{name: 'about-us'}" active-class="pc-link-active">关于我们</router-link>
       <router-link class="pc-link" :to="{name: 'artists-and-works'}" active-class="pc-link-active">参展艺术家·作品</router-link>

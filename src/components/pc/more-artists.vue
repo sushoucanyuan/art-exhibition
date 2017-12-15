@@ -1,7 +1,7 @@
 <template>
   <div id="more-artists">
 
-    <div class="pc-subpage-info">
+    <div class="pc-subpage-container">
 
       <el-breadcrumb class="pc-subpage-breadcrumb" separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{name: 'artists-and-works'}">参展艺术家·作品</el-breadcrumb-item>
@@ -14,7 +14,9 @@
       </div>
 
       <div class="artist" v-for="item in artists" :key="item.id">
-        <img class="artist-img" :src="'static/artists/' + item.img">
+        <div class="artist-img">
+          <img v-lazy="item.picurl">
+        </div>
         <div class="artist-introduce">
           <div class="artist-title">
             <div class="artist-maintitle">
@@ -23,7 +25,7 @@
               </el-tooltip>
             </div>
           </div>
-          <div class="artist-brief">{{item.brief}}</div>
+          <div class="artist-brief">{{item.info}}</div>
         </div>
       </div>
 
@@ -33,7 +35,7 @@
 </template>
 
 <script>
-  import { getAllArtists } from '@/api'
+  import { getArtists } from '@/api'
 
   export default {
     data() {
@@ -42,11 +44,11 @@
       }
     },
     methods: {
-      getAllArtists
+      getArtists
     },
     beforeMount() {
-      this.getAllArtists().then(({ data }) => {
-        this.artists = data.allArtists
+      this.getArtists().then(artists => {
+        this.artists = artists
       })
     }
   }
@@ -68,8 +70,19 @@
         display: inline-block;
       }
       > .artist-img {
+        text-align: center;
         width: $img-width;
         margin-right: 99% - $img-width - $introduce-width;
+        background-color: $img-backgroundColor;
+        > img {
+          width: 100%;
+          &[lazy="error"],
+          &[lazy="loading"] {
+            width: 40px;
+            height: 40px;
+            margin: 60px 0;
+          }
+        }
       }
       > .artist-introduce {
         width: $introduce-width;

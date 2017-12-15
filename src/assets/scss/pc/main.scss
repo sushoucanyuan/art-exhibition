@@ -1,5 +1,53 @@
 @import "./theme.scss";
-.pc-subpage-info {
+.pc-main-container {
+  position: relative;
+  box-sizing: border-box;
+  width: $main-width;
+  margin: 0 auto;
+  padding: 0 $main-padding;
+}
+
+.pc-main-info {
+  position: relative;
+  box-sizing: border-box;
+  width: $info-width;
+  margin: 0 auto;  
+}
+
+.pc-main-sidebar {
+  $color: rgb(56, 56, 56);
+  cursor: pointer;
+  color: $color;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  text-align: left;
+  position: absolute;
+  top: 80px;
+  left: $main-padding;
+  width: $side-width;
+  >li {
+    position: relative;
+    padding: 16px 0;
+    transition: 0.4s;
+    &.mark {
+      color: $mark-color;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      border-top: 1px solid $color;
+    }
+    >div:first-child {
+      font-weight: bold;
+    }
+  }
+}
+
+.pc-subpage-container {
   position: relative;
   box-sizing: border-box;
   width: $main-width;
@@ -8,7 +56,7 @@
 }
 
 .pc-subpage-breadcrumb {
-  margin: 35px 0 65px 10px;
+  margin: 22px 0 60px 10px;
 }
 
 .pc-subpage-radio {

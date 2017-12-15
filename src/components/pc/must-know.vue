@@ -1,7 +1,7 @@
 <template>
   <div id="about-us">
 
-    <img src="static/must_know/header.png">
+    <img src="/static/must_know/header.png">
 
     <div class="info pc-info">
 
@@ -16,9 +16,9 @@
         <p class="link">地图&nbsp;<i class="icon-fenxiang iconfont"></i></p>
         <h4>室内外地图指引</h4>
         <p>室内地图</p>
-        <img src="static/must_know/map.png">
+        <img src="/static/must_know/map.png">
         <p>室外地图</p> 
-        <img src="static/must_know/map.png">
+        <img src="/static/must_know/map.png">
       </div>
 
     </div>

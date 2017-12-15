@@ -31,6 +31,9 @@ const moreWorks = () =>
 const moreArtistsDetail = () =>
   import ( /* webpackChunkName: "pc-more-artists-detail" */ '@/components/pc/more-artists-detail.vue')
 
+const moreWorksDetail = () =>
+  import ( /* webpackChunkName: "pc-more-works-detail" */ '@/components/pc/more-works-detail.vue')
+
 const reportsDetail = () =>
   import ( /* webpackChunkName: "pc-reports-detail" */ '@/components/pc/reports-detail.vue')
 
@@ -69,8 +72,14 @@ const pcMain = [
   path: 'more-artists-detail/:id',
   component: moreArtistsDetail
 }, {
+  name: 'more-works-detail',
+  props: true,
+  path: 'more-works-detail/:id',
+  component: moreWorksDetail
+}, {
   name: 'reports-detail',
-  path: 'reports-detail',
+  path: 'reports-detail/:type/:id',
+  props: true,  
   component: reportsDetail
 }]
 

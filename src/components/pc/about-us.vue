@@ -1,7 +1,7 @@
 <template>
   <div id="about-us">
 
-    <img src="static/about_us/header.png">
+    <img src="/static/about_us/header.png">
 
     <div class="main">
 

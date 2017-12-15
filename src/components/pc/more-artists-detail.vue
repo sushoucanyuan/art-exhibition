@@ -1,57 +1,92 @@
 <template>
   <div id="more-artists-detail">
 
-    <div class="pc-subpage-info">
-
+    <div class="pc-subpage-container">
       <el-breadcrumb class="pc-subpage-breadcrumb" separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{name: 'artists-and-works'}">参展艺术家·作品</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{name: 'more-artists'}">更多艺术家</el-breadcrumb-item>        
-        <el-breadcrumb-item>更多艺术家</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{name: 'more-artists'}">更多艺术家</el-breadcrumb-item>
+        <el-breadcrumb-item>{{name}}</el-breadcrumb-item>
       </el-breadcrumb>
-
     </div>
 
-    <swiper class="artist" ref="mySwiper" :options="options">
-      <swiper-slide v-for="(item, index) in artists" :key="index">
-        <div class="first">
-          <div>
-            <div>
-              <p >{{item.name}}</p>          
+    <swiper ref="mySwiper" class="artist-detail" :options="options">
+      <swiper-slide v-for="(item, index) in artists" :key="item.id" :data-hash="'/more-artists-detail/' + item.id">
+        <div class="artist">
+          <div class="pc-subpage-container">
+            <div class="artist-main">
+              <span class="artist-name">{{item.name}}</span>
+              <div v-if="index === initIndex" class="artist-img">
+                <img :src="item.picurl">                
+              </div>
+              <div v-else class="artist-img">
+                <img class="swiper-lazy" :data-src="item.picurl">
+                <div class="swiper-lazy-preloader"></div>                
+              </div>
             </div>
-            <img :src="'static/artists-detail/' + item.src">            
           </div>
         </div>
-        <div class="second">
-          <div class="artist-info">
-            <h6>{{item.work}}</h6>
-            <p v-for="(item, index) in item.p" :key="index">{{item}}</p>
+        <div class="introduce">
+          <div class="pc-subpage-container">
+            <p class="introduce-info">{{item.info}}</p>
+            <p class="introduce-content" v-html="item.content"></p>
           </div>
-          <img :src="'static/artists-detail/' + item.img">
+        </div>
+        <div class="works" v-for="item in works[index]" :key="item.id">
+          <div class="pc-subpage-container">
+            <div class="works-img">
+              <img :src="item.picurl">
+            </div>
+            <div class="works-info">
+              <h6 class="works-name">
+                <span class="pc-name" @click="$router.push({name: 'more-works-detail', params: {id: item.id}})">{{item.name}}</span>
+              </h6>
+              <p class="works-content" v-html="item.content"></p>
+            </div>            
+          </div>          
         </div>
       </swiper-slide>
-        <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
 
   </div>
 </template>
 
 <script>
- // import { getOneArtist } from '@/api'
-  import { artists } from '@/assets/data/artists-detail'
+  import { getAllArtists, getArtistAllWorks } from '@/api'
 
   export default {
     props: ['id'],
     data() {
       return {
-        artists,
+        path: '',
+        initIndex: 0,
+        index: 0,
+        works: [],
+        artists: [],
         options: {
-          loop: true,
+          preloadImages: false,
+          lazy: true,
           initialSlide: 0,
-          autoplayDisableOnInteraction: false,
+          autoHeight: true,
+          hashNavigation: {
+            watchState: true
+          },
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
+          },
+          on: {
+            slideChange: () => {
+              let index = this.swiper.realIndex
+              let id = this.artists[index].id
+              this.index = index
+              if (!this.works[index]) {
+                this.getArtistAllWorks({ id }).then(works => {
+                  this.$set(this.works, index, works)
+                })
+              }
+            }
           }
         }
       }
@@ -61,84 +96,143 @@
         return this.$refs.mySwiper.swiper
       },
       name() {
-        return this.artists[this.index].name
-      },
-      index() {
-        // 需要判断存不存在
-        if (this.$refs.mySwiper) return this.$refs.mySwiper.swiper.realIndex
-        else return 0
+        let artist = this.artists[this.index]
+        if (artist) return artist.name
+        else return '...'
       }
     },
-    // beforeMount() {
-    //   this.getOneArtist().then(({ data }) => {
-
-    //   })
-    // },
+    methods: {
+      getAllArtists,
+      getArtistAllWorks
+    },
+    beforeMount() {
+      this.getAllArtists().then(artists => {
+        this.artists = artists
+        // 滑到指定的初始艺术家
+        for (let i = 0; i < artists.length; i++) {
+          if (artists[i].id === this.id) {
+            this.swiper.slideTo(i, 0, false)
+            break
+          }
+        }
+        // 加载初始页面作品
+        let index = this.swiper.realIndex
+        this.index = index
+        let id = this.artists[index].id
+        if (!this.works[index]) {
+          this.getArtistAllWorks({ id }).then(works => {
+            this.$set(this.works, index, works)
+          })
+        }
+      })
+    },
     beforeRouteEnter(to, from, next) {
       next(vm => {
-        vm.swiper.slideTo(vm.id, 0, false)
+        // 用于加载初始页面图片
+        vm.initIndex = vm.swiper.realIndex
       })
     }
   }
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_pc.scss";
+  @import "../../assets/scss/pc/main.scss";
+  @import "../../assets/scss/pc/theme.scss";
 
   #more-artists-detail {
-    > .artist {
-      $button: 75px;
-      @mixin main {
-        display: flex;
-        justify-content: space-between;
-        box-sizing: border-box;
-        width: $main-width;
-        margin: 0 auto;
-        padding: 0 $mes-padding + 40px 0;
-      }
+    > .artist-detail {
+      $artist-height: 180px;
+      $button-position: 75px;
+      $button-top: $artist-height / 2;
       .swiper-button-prev {
-        left: $button;
+        top: $button-top;
+        left: $button-position;
       }
       .swiper-button-next {
-        right: $button;
+        top: $button-top;
+        right: $button-position;
       }
-      .first {
+      .artist {
         box-sizing: border-box;
-        height: 200px;
+        height: $artist-height;
         padding: 20px 0;
-        background-color: $footer-backgroundColor;
-        > div {
-          @include main;
+        background-color: #efefef;
+        > .pc-subpage-container {
           height: 100%;
-          > div > p {
-            font-size: 36px;
-            line-height: 68px;
-            letter-spacing: 5px;
-          }
-          > img {
-            $side-length: 160px;
-            align-self: center;
-            width: $side-length;
-            height: $side-length;
+          > .artist-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 8px;
+            > .artist-name {
+              font-size: 36px;
+              letter-spacing: 5px;
+            }
+            > .artist-img {
+              $side-length: 130px;
+              position: relative;
+              width: $side-length;
+              height: $side-length;
+              border-radius: 50%;
+              box-shadow: 0 4px 15px 4px rgba(152, 146, 146, 0.9);
+              overflow: hidden;
+              > img {
+                width: 100%;
+                height: 100%;
+                transform: scale(1.1); // 消除黑线边框
+              }
+            }
           }
         }
       }
-      .second {
-        @include main;
-        padding-top: 30px;
-        padding-bottom: 50px;
-        > .artist-info {
-          width: 45%;
-          font-size: 16px;
-          line-height: 35px;
-          letter-spacing: 3px;
-          > h6 {
-            margin-bottom: 10px;
+      .introduce {
+        margin-top: 30px;
+        $font-size: 14px;
+        $line-height: 2 * $font-size;
+        > .pc-subpage-container {
+          font-size: 14px;
+          line-height: $line-height;
+          letter-spacing: 2px;
+          > .introduce-info {
+            color: $title-color;
+            font-weight: bold;
+          }
+          > .introduce-content {
+            color: $content-color;
+            min-height: 3 * $line-height;
+            overflow: hidden;
           }
         }
-        > img {
-          align-self: center;
-          max-width: 52%;
+      }
+      .works {
+        margin-top: 30px;
+        > .pc-subpage-container {
+          display: flex;
+          justify-content: space-between;
+          > .works-img {
+            display: flex;
+            justify-content: center;
+            width: 52%;
+            > img {
+              max-width: 100%;
+              height: 220px;
+            }
+          }
+          > .works-info {
+            width: 45%;
+            > .works-name {
+              color: $title-color;
+              font-size: 26px;
+              letter-spacing: 3px;
+              margin-bottom: 10px;
+            }
+            > .works-content {
+              color: $content-color;
+              line-height: 35px;
+              letter-spacing: 2px;
+            }
+          }
         }
       }
     }

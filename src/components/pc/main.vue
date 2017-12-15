@@ -2,7 +2,7 @@
   <div id="main">
 
     <header>
-      <img class="logo" src="static/logo.png" alt="东湖雕塑生态双年展" @click="$router.push({name: 'index'})">
+      <img class="logo" src="/static/logo.png" alt="东湖雕塑生态双年展" @click="$router.push({name: 'index'})">
       <nav>
         <router-link class="link" :to="{name: 'about-us'}" active-class="link-active">关于我们</router-link>
         <router-link class="link" :to="{name: 'artists-and-works'}" active-class="link-active">参展艺术家·作品</router-link>
@@ -24,7 +24,7 @@
 
     <footer>
       <div>
-        <img class="logo" src="static/logo.png" alt="东湖雕塑生态双年展">
+        <img class="logo" src="/static/logo.png" alt="东湖雕塑生态双年展">
       </div>
       <div>
         <div>
@@ -36,10 +36,10 @@
           <div>
             <p>点击</p>
             <p>
-              <img src="static/footer/footer_1.png">
-              <img src="static/footer/footer_2.png">
-              <img src="static/footer/footer_3.png">
-              <img src="static/footer/footer_4.png">
+              <img src="/static/footer/footer_1.png">
+              <img src="/static/footer/footer_2.png">
+              <img src="/static/footer/footer_3.png">
+              <img src="/static/footer/footer_4.png">
             </p>         
           </div>
         </div>
@@ -99,7 +99,7 @@
       > nav {
         display: inline-block;
         > .link {
-          @mixin active{
+          @mixin active {
             border-radius: 30px;
             color: #fff;
             background-color: #49c19b;
@@ -113,7 +113,7 @@
           margin: ($header-height - $height)/2 0;
           margin-right: 26px;
           padding: 0 20px;
-          transition: .4s;
+          transition: 0.4s;
           &:hover {
             @include active;
           }
@@ -169,7 +169,7 @@
         > .logo {
           height: 80px;
         }
-        .link{
+        .link {
           cursor: pointer;
         }
       }
