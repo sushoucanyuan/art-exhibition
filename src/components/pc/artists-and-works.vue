@@ -1,11 +1,7 @@
 <template>
-  <div id="artists-and-works" class="pc-info">
+  <div id="artists-and-works" class="pc-subpage-container">
 
     <div class="mes">
-
-      <!-- <div class="pc-search">
-        <input type="text">      
-      </div> -->
 
       <div class="imgs">
 
@@ -46,7 +42,7 @@
 </template>
 
 <script>
-  import { left, right } from '@/assets/data/artists-and-works'
+  import { left, right } from '@/common/data/artists-and-works'
 
   export default {
     data() {
@@ -78,16 +74,13 @@
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_pc.scss";
+  @import "../../assets/scss/pc/theme.scss";
 
   #artists-and-works {
     position: relative;
     > .mes {
-      width: $mes-width;
+      width: $info-width;
       margin: 30px auto 0;
-      > .pc-search {
-        margin: 30px 0;
-      }
       > .imgs {
         $left-width: 58%;
         $right-width: 39%;

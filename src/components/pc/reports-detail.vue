@@ -12,8 +12,8 @@
 
       <div class="page">
         <h4>{{news.title}}</h4>
-        <div class="date">{{news.publishAt}}</div>
-        <div v-html="news.content"></div>
+        <div class="date">{{news.publishAt | formatDate}}</div>
+        <div class="content" v-html="news.content"></div>
       </div>
     </div>
 
@@ -21,9 +21,11 @@
 </template>
 
 <script>
+  import formatDate from '@/mixins/formatDate'
   import { getNew } from '@/api'
 
-  export default {
+  export default {    
+    mixins: [formatDate],
     props: ['type', 'id'],
     data() {
       return {
@@ -72,15 +74,9 @@
           font-size: 12px;
           margin: 20px 0;
         }
-        > p {
-          font-size: 16px;
+        > .content{
           line-height: 2;
-          text-indent: 2em;
           text-align: left;
-        }
-        > img {
-          margin: 10px 0;
-          width: 100%;
         }
       }
     }

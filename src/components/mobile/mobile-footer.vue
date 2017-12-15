@@ -7,12 +7,6 @@
       <p>联系电话：027-87635298</p>
     </div>
     <div>
-      <p class="link">关于我们</p>
-      <p class="link">参展艺术家·作品</p>
-      <p class="link">展览报道</p>
-      <p class="link">观展需知</p>
-    </div>
-    <div>
       <p>访问</p>
       <p>新闻</p>
       <p>艺术作品</p>
@@ -28,9 +22,10 @@
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_mobile.scss";
+  @import "../../assets/scss/mobile/theme.scss";
 
   #mobile-footer {
+    margin-top: 4rem;
     padding: 1rem $main-padding 1.5rem;
     background-color: $footer-backgroundColor;
     > div {

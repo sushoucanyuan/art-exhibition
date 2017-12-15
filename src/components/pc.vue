@@ -13,11 +13,11 @@
 </script>
 
 <style lang="scss">
-  @import "../assets/scss/theme_pc.scss";
+  @import "../assets/scss/pc/theme.scss";
 
   // 覆盖面包屑组件样式
   .el-breadcrumb__inner {
-    letter-spacing: $letter-spacing;
+    letter-spacing: 2px;
     &:hover {
       color: $mark-color;
     }
@@ -111,15 +111,6 @@
         border: none;
         background-color: rgb(233, 233, 233);
       }
-    }
-
-    // 布局样式
-    $padding-bottom: 120px;
-    .pc-info {
-      box-sizing: border-box;
-      width: $main-width;
-      margin: 0 auto;
-      padding: 0 20px $padding-bottom;
     }
   }
 </style>

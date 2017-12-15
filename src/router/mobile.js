@@ -22,11 +22,20 @@ const reports = () =>
 const mustKnow = () =>
   import ( /* webpackChunkName: "must-know" */ '@/components/mobile/must-know.vue')
 
+const moreWorks = () =>
+  import ( /* webpackChunkName: "more-works" */ '@/components/mobile/more-works.vue')
+
 const moreArtists = () =>
   import ( /* webpackChunkName: "more-artists" */ '@/components/mobile/more-artists.vue')
 
-const moreWorks = () =>
-  import ( /* webpackChunkName: "more-works" */ '@/components/mobile/more-works.vue')
+const moreWorksDetail = () =>
+  import ( /* webpackChunkName: "more-works-detail" */ '@/components/mobile/more-works-detail.vue')
+
+const moreArtistsDetail = () =>
+  import ( /* webpackChunkName: "more-artists-detail" */ '@/components/mobile/more-artists-detail.vue')
+
+const reportsDetail = () =>
+  import ( /* webpackChunkName: "reports-detail" */ '@/components/mobile/reports-detail.vue')
 
 Vue.use(Router)
 
@@ -64,7 +73,7 @@ export default new Router({
     children: [{
       path: '/',
       component: main,
-      redirect: { name: 'index' },      
+      redirect: { name: 'index' },
       children: mobileMain
     }, {
       name: 'more-works',
@@ -76,11 +85,24 @@ export default new Router({
       path: 'more-artists',
       meta: { title: '更多艺术家' },
       component: moreArtists
-    // }, {
-    //   name: 'more-artists-detail',
-    //   path: 'more-artists-detail/:idnex',
-    //   meta: { title: '更多艺术家' },
-    //   component: moreArtists
+    }, {
+      name: 'more-artists-detail',
+      path: 'more-artists-detail/:id',
+      props: true,
+      meta: { title: '艺术家详细信息' },
+      component: moreArtistsDetail
+    }, {
+      name: 'more-works-detail',
+      path: 'more-works-detail/:id',
+      props: true,
+      meta: { title: '作品详细信息' },
+      component: moreWorksDetail
+    }, {
+      name: 'reports-detail',
+      path: 'reports-detail/:type/:id',
+      props: true,
+      meta: { title: '新闻信息' },
+      component: reportsDetail
     }]
   }]
 })

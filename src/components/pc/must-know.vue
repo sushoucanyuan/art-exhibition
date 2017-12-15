@@ -31,7 +31,7 @@
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_pc.scss";
+  @import "../../assets/scss/pc/theme.scss";
 
   #about-us {
     > img {
@@ -41,7 +41,7 @@
     > .info {
       margin-top: 50px;
       > .mes{
-        width: $mes-width;
+        width: $info-width;
         margin: 0 auto;
           > h4,
           > p,
@@ -61,7 +61,7 @@
             letter-spacing: 3px;
             &.link{
               cursor: pointer;
-              color: $mark-color;
+              color: $link-color;
             }
           }
           > img {

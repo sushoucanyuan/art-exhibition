@@ -142,7 +142,6 @@
   #more-artists-detail {
     > .artist-detail {
       $artist-height: 180px;
-      $button-position: 75px;
       $button-top: $artist-height / 2;
       .swiper-button-prev {
         top: $button-top;

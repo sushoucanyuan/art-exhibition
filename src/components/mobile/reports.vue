@@ -1,5 +1,5 @@
 <template>
-  <div id="reports" class="mobile-info">
+  <div id="reports">
     <mt-navbar class="navbar" v-model="selected">
       <mt-tab-item class="navbar-item" id="1">
         <h6>HOT NEWS</h6>
@@ -15,23 +15,15 @@
       </mt-tab-item>
     </mt-navbar>
 
-    <div class="mobile-search">
-      <input type="text">      
-    </div>
-
     <mt-tab-container class="info" v-model="selected">
-      <mt-tab-container-item class="news" id="1">
-        <div class="news-container" v-for="(item, index) in news" :key="index">
-          <img class="news-img" :src="'static/reports/' + item.src">
-          <p class="news-date">{{item.date}}</p>          
-          <p class="news-description">{{item.description}}</p>
-        </div>
+      <mt-tab-container-item id="1">
+        <reports-news :type="0" key="0"></reports-news>
       </mt-tab-container-item>
       <mt-tab-container-item id="2">
-        <mt-cell v-for="n in 4" :key="n" :title="'测试 ' + n" />
+        <reports-news :type="1" key="1"></reports-news>
       </mt-tab-container-item>
       <mt-tab-container-item id="3">
-        <mt-cell v-for="n in 6" :key="n" :title="'选项 ' + n" />
+        <reports-news :type="2" key="2"></reports-news>
       </mt-tab-container-item>
     </mt-tab-container>
 
@@ -39,24 +31,26 @@
 </template>
 
 <script>
-  import { news, information, video } from '@/assets/data/reports'
+  import reportsNews from '@/components/mobile/reports-news.vue'
 
   export default {
     data() {
       return {
-        news,
-        information,
-        video,
         selected: "1"
       }
+    },
+    components: {
+      reportsNews
     }
   }
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_mobile.scss";
+  @import "../../assets/scss/mobile/theme.scss";
   
   #reports {
+    padding-left: $main-padding;
+    padding-right: $main-padding;
     > .navbar {
       padding-top: 0.4rem;
       justify-content: space-between;
@@ -69,10 +63,10 @@
         overflow: hidden;
         &.is-selected {
           border-bottom: none;
-          color: $link-active-color;
+          color: $mark-color;
         }
         h6 {
-          @include font-size(8);
+          font-size: 0.6rem
         }
         h6:nth-child(2) {
           font-weight: normal;
@@ -81,9 +75,14 @@
       }
     }
     > .info {
+      .pagination{
+        text-align: right;
+        margin: 1rem 0;
+      }
       .news {
         flex-wrap: wrap;
         display: flex;
+        min-height: 26rem;
         .news-container {
           box-sizing: border-box;
           width: 50%;
@@ -99,12 +98,15 @@
             padding: 0.7rem 0;
           }
           > .news-description {
-            $line-height: 16px;
+            $line-height: 1.2rem;
             font-size: 0.75rem;
             line-height: $line-height;
-            height: 4 * $line-height;
+            height: 3 * $line-height;
             overflow: hidden;
             text-overflow: ellipsis;
+            > .hot{
+              height: 1rem;
+            }
           }
         }    
         .news-container:nth-child(even){

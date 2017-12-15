@@ -3,7 +3,7 @@
 
     <img class="header" src="static/must_know/header.png">
 
-    <div class="mobile-info">
+    <div class="main">
       <h6>开幕时间 OPENING TIME</h6>
       <p>2017年12月17日 下午3:00</p>
       <h6>展览时间 EXHIBITION TIME</h6>
@@ -29,7 +29,7 @@
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_mobile.scss";
+  @import "../../assets/scss/mobile/theme.scss";
 
   #must-know {
     > .header {
@@ -37,7 +37,9 @@
       width: 100%;
       height: $swiper-height;
     }
-    > .mobile-info {
+    > .main {
+      padding-left: $main-padding;
+      padding-right: $main-padding;
       > h6,
       p {
         line-height: 2rem;
@@ -51,15 +53,15 @@
         }
       }
       > p {
-        &.link{
-          color: $link-active-color;
+        &.link {
+          color: $mark-color;
         }
         .iconfont {
           font-size: 0.9rem;
           padding-left: 0.4rem;
         }
       }
-      > img{
+      > img {
         width: 100%;
         padding: 0.4rem 0;
       }

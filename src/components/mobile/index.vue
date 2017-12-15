@@ -8,24 +8,35 @@
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
 
-    <div class="info mobile-info">
+    <div class="info">
 
       <div class="artist">
         <h4>艺术家</h4>
         <p>ARTISTS</p>
         <swiper :options="infos_swiper">
-          <swiper-slide v-for="(item, index) in artists" :key="index">
-            <img class="artist-img" :src="'static/index/' + item.src">
+          <swiper-slide v-for="(item, index) in artists" :key="item.id">
+            <img class="artist-img" :src="item.picurl">
             <div>
               <div class="artist-artist">
-                <span>{{item.name}}</span>
-                <span>{{item.date}}</span>
+                <span @click="$router.push({name: 'more-artists-detail', params:{id: item.id}})">{{item.name}}</span>
               </div>
-              <p class="artist-description" v-for="(item,index) in item.descriptions" :key="index">{{item}}</p>              
+              <pre class="artist-description">{{item.info}}</pre>                            
             </div>
           </swiper-slide>
           <div class="info-swiper-pagination" slot="pagination"></div>
         </swiper>
+      </div>
+
+      <div class="news">
+        <div class="news-main">
+          <div class="news-info">
+            <h4 class="title">{{firstNews.title}}</h4>
+            <p class="news-content">{{firstNews.info}}</p>              
+            <button class="news-link" @click="$router.push({name: 'reports-detail', params: {type: 1, id: firstNews.id}})">查看详情</button>            
+          </div>
+          <img v-if="firstNews.picurl" class="news-img" :src="firstNews.picurl">          
+          <img v-else class="news-img" src="/static/index/news.png">
+        </div>
       </div>
 
       <div class="movie">
@@ -33,8 +44,8 @@
         <p>MOVIE PHOTO</p>
         <swiper :options="infos_swiper">
           <swiper-slide class="movie-container" v-for="(item, index) in movies" :key="index">
-            <img class="movie-img" :src="'static/index/' + item">
-            <img class="movie-btn" src="../../assets/img/play_btn.png">
+            <video class="movie-video" :src="item.src" controls preload="auto" loop></video>
+            <div class="movie-name">{{item.name}}</div>
           </swiper-slide>
           <div class="info-swiper-pagination" slot="pagination"></div>
         </swiper>
@@ -46,15 +57,15 @@
 </template>
 
 <script>
-  import 'swiper/dist/css/swiper.css'
-  import { swiper, swiperSlide } from 'vue-awesome-swiper'
-  import { imgs, artists, movies } from '@/assets/data/index'
+  import { imgs, movies } from '@/common/data/index'
+  import { getTopAuthorList, getTopNewsList } from '@/api'
 
   export default {
     data() {
       return {
         imgs,
-        artists,
+        artists: [],
+        news: [],
         movies,
         imgs_swiper: {
           loop: true,
@@ -72,7 +83,6 @@
           }
         },
         infos_swiper: {
-          loop: true,
           slidesPerView: 2,
           slidesPerGroup: 2,
           spaceBetween: '8%',
@@ -86,15 +96,37 @@
         }
       }
     },
-    components: {
-      swiper,
-      swiperSlide
+    computed: {
+      firstNews() {
+        if (this.news[0]) return this.news[0]
+        else return {
+          id: '',
+          title: '...',
+          info: '...',
+          picurl: ''
+        }
+      },
+      newsList() {
+        return this.news.slice(1)
+      }
+    },
+    methods: {
+      getTopAuthorList,
+      getTopNewsList
+    },
+    beforeMount() {
+      this.getTopAuthorList().then(artists => {
+        this.artists = artists
+      })
+      this.getTopNewsList().then(news => {
+        this.news = news
+      })
     }
   }
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_mobile.scss";
+  @import "../../assets/scss/mobile/theme.scss";
 
   #index {
     > .swiper .swiper-img {
@@ -102,6 +134,8 @@
       height: $swiper-height;
     }
     > .info {
+      padding-left: $main-padding;
+      padding-right: $main-padding;
       > div {
         padding-top: 1.2rem;
         > h4 {
@@ -135,21 +169,93 @@
       }
       > .movie {
         .movie-container {
-          position: relative;
-          .movie-img {
+          .movie-video {
+            display: block;
             width: 100%;
-            height: 6.8rem;
           }
-          .movie-btn {
-            $side-length: 1.8rem;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: $side-length;
-            height: $side-length;
-            margin: auto;
+          .movie-name {
+            color: $title-color;
+            font-weight: bold;
+            font-family: bold;
+            line-height: 2rem;
+            text-align: center;
+            letter-spacing: 0.2rem;
+            margin-top: 1rem;
+          }
+        }
+      }
+      > .news {
+        > .news-main {
+          display: flex;
+          justify-content: space-between;
+          padding-bottom: 1rem;
+      //    border-bottom: 1px solid $content-color;
+          > .news-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            > .news-link {
+              $height: 2.5rem;
+              cursor: pointer;
+              color: #fff;
+              letter-spacing: 0.2rem;
+              align-self: flex-start;
+              line-height: $height;
+              height: $height;
+              padding: 0 2rem;
+              border: none;
+              border-radius: $height/2;
+              background-color: rgba(7, 171, 133, 1);
+              box-shadow: 0px 10px 12px 2px $shadow-color;
+              transition: 0.2s;
+              &:hover {
+                background-color: rgba(7, 171, 133, 0.8);
+              }
+            }
+            .news-content {
+              color: $content-color;
+              font-size: 0.8rem;
+              line-height: 1.2rem;
+              letter-spacing: 0.1rem;
+              max-height: 3.6rem;
+              padding-left: 0.4rem;
+              padding-right: 1rem;
+              overflow: hidden;
+            }
+          }
+          > .news-img {
+            align-self: flex-start;
+            width: 9rem;
+            margin-top: 0.8rem;
+            margin-left: 1rem;
+            border-radius: 0.8rem;
+            box-shadow: 5px 5px 16px 5px $shadow-color;
+          }
+        }
+        > .news-latest {
+          display: flex;
+          justify-content: space-between;
+          > div {
+            $line-height: 1rem;
+            font-size: 1rem;
+            width: 280px;
+            margin-top: 20px;
+            > .news-title {
+              color: $title-color;
+              line-height: $line-height;
+              letter-spacing: 2px;
+              height: $line-height*2;
+              overflow: hidden;
+              margin-bottom: 5px;
+            }
+            > .news-content {
+              font-size: 0.9rem;
+              color: $content-color;
+              line-height: $line-height;
+              height: $line-height*3;
+              padding-right: 25px;
+              overflow: hidden;
+            }
           }
         }
       }

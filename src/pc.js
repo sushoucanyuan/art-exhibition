@@ -7,6 +7,8 @@ import {
   Pagination,
   RadioGroup,
   RadioButton,
+  Option,
+  Select,
 } from 'element-ui'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
@@ -26,3 +28,5 @@ Vue.use(Pagination)
 Vue.use(RadioGroup)
 Vue.use(RadioButton)
 Vue.use(VueAwesomeSwiper)
+Vue.use(Option)
+Vue.use(Select)

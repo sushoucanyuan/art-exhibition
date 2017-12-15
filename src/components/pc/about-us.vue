@@ -21,9 +21,10 @@
 </template>
 
 <script>
-  import aboutExhibition from './about-us/about-exhibition.vue'
-  import callForPapers from './about-us/call-for-papers.vue'
-  import logoDesign from './about-us/logo-design.vue'
+  import aboutExhibition from '@/components/about-us/about-exhibition.vue'
+  import callForPapers from '@/components/about-us/call-for-papers.vue'
+  import logoDesign from '@/components/about-us/logo-design.vue'
+  import committee from '@/components/about-us/committee.vue'
 
   export default {
     data() {
@@ -39,7 +40,7 @@
           component: 'logoDesign'
         }, {
           name: '艺术委员会',
-          component: ''
+          component: 'committee'
         }],
         component: 'aboutExhibition'
       }
@@ -47,7 +48,8 @@
     components: {
       aboutExhibition,
       callForPapers,
-      logoDesign
+      logoDesign,
+      committee
     }
   }
 </script>
@@ -74,9 +76,20 @@
         width: $info-width;
         margin-right: $space-betewwn;
         > div {
-          > h3,
-          > h4,
-           p,
+          > .img {
+            text-align: center;
+          }
+          > .name {
+            > p {
+              display: inline-block;
+              &:first-child {
+                width: 240px;
+              }
+            }
+          }
+          h3,
+          h4,
+          p,
           img {
             margin-bottom: 18px;
           }

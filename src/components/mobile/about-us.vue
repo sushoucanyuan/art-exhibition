@@ -42,7 +42,7 @@
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_mobile.scss";
+  @import "../../assets/scss/mobile/theme.scss";
 
   #about-us {
     > img {
@@ -57,8 +57,8 @@
           padding: 0.75rem 0;
           &.is-selected {
             font-weight: bold;
-            border-bottom: 0.2rem solid $link-active-color;
-            color: $link-active-color;
+            border-bottom: 0.2rem solid $mark-color;
+            color: $mark-color;
           }
         }
       }

@@ -10,7 +10,7 @@ export const getTopNewsList = () =>
     }
   }).then(({ data }) => data.map(item => {
     let { id, title, picurl, info } = item
-    return { id, title,picurl, info }
+    return { id, title, picurl, info }
   }))
 
 export const getTopAuthorList = () =>
@@ -21,8 +21,8 @@ export const getTopAuthorList = () =>
 
 export const getWorks = () =>
   axios.get('getWorkList').then(({ data }) => data.map(item => {
-    let { id, name, picurl, author, authorname } = item
-    return { id, name, picurl, author, authorname }
+    let { id, name, picurl, info, author, authorname } = item
+    return { id, name, picurl, info, author, authorname }
   }))
 
 export const getArtists = () =>
@@ -67,7 +67,4 @@ export const getNewsCount = ({ type }) =>
   axios.get('getNewlistCount/' + type).then(({ data }) => data.Count)
 
 export const getNew = ({ id }) =>
-  axios.get('getNew/' + id).then(({ data }) => data.map(item => {
-    let { title, content, publishAt } = item
-    return { title, content, publishAt }
-  }))
+  axios.get('getNew/' + id).then(({ data }) => data)

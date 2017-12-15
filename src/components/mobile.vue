@@ -17,7 +17,7 @@
 </script>
 
 <style lang="scss">
-  @import "../assets/scss/theme_mobile.scss";
+  @import "../assets/scss/mobile/theme.scss";
 
   #mobile {
     // 覆盖头部组件样式

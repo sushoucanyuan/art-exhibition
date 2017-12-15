@@ -2,7 +2,7 @@
   <div id="mobile-header">
 
     <mt-header fixed :title="$route.meta.title">
-      <img v-if="type == 'main'" slot="left" class="logo" src="static/logo_header.png" data-rjs="3" alt="东湖雕塑生态双年展" @click="$router.push({name: 'index'})">
+      <img v-if="type == 'main'" slot="left" class="logo" src="static/logo.png" data-rjs="3" alt="东湖雕塑生态双年展" @click="$router.push({name: 'index'})">
       <mt-button v-if="type == 'more'" slot="left" class="back" icon="back" @click="back">返回</mt-button>
       <mt-button slot="right" @click="opened = !opened" @blur.native="opened = false">
         <i slot="icon" class="icon-menu iconfont"></i>
@@ -26,17 +26,12 @@
         opened: false
       }
     },
-    props: ['type'],
-    methods: {
-      back() {
-        this.$router.back()
-      }
-    }
+    props: ['type', 'back']
   }
 </script>
 
 <style lang="scss">
-  @import "../../assets/scss/theme_mobile.scss";
+  @import "../../assets/scss/mobile/theme.scss";
 
   #mobile-header {
     .logo {

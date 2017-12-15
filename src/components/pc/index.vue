@@ -35,14 +35,16 @@
           <div class="news-info">
             <h4 class="title">{{firstNews.title}}</h4>
             <p class="news-content">{{firstNews.info}}</p>              
-            <button class="news-link" @click="$router.push({name: 'reports-detail', params: {id: 0}})">查看详情</button>            
+            <button class="news-link" @click="$router.push({name: 'reports-detail', params: {type: 1, id: firstNews.id}})">查看详情</button>            
           </div>
           <img v-if="firstNews.picurl" class="news-img" :src="firstNews.picurl">          
-          <img v-else class="news-img" src="/static/reports/news_1.png">
+          <img v-else class="news-img" src="/static/index/news.png">
         </div>
         <div class="news-latest">
           <div v-for="item in newsList" :key="item.id">
-            <h4 class="news-title">{{item.title}}</h4>
+            <h4 class="news-title">
+              <span class="pc-name" @click="$router.push({name:'reports-detail', params: {type: 1, id: item.id}})">{{item.title}}</span>
+            </h4>
             <p class="news-content">{{item.info}}</p>            
           </div>
         </div>
@@ -53,8 +55,8 @@
         <p class="subtitle">MOVIE PHOTO</p>
         <swiper :options="works_swiper">
           <swiper-slide v-for="(item, index) in movies" :key="index">
-            <video class="movie-video" :src="item" controls preload="auto" loop></video>
-            <div class="movie-title">{{item.title}}</div>
+            <video class="movie-video" :src="item.src" controls preload="auto" loop></video>
+            <div class="movie-name">{{item.name}}</div>
           </swiper-slide>
           <div class="info-swiper-pagination" slot="pagination"></div>
         </swiper>
@@ -65,36 +67,16 @@
 </template>
 
 <script>
+  import { imgs, movies } from '@/common/data/index'
   import { getTopAuthorList, getTopNewsList } from '@/api'
 
   export default {
     data() {
       return {
-        imgs: [
-          'swiper1.png',
-          'swiper1.png',
-          'swiper1.png'
-        ],
+        imgs,
+        movies,
         artists: [],
         news: [],
-        movies: [
-          {
-            src: 'http://opm06mqes.bkt.clouddn.com/%E6%B1%A4%E6%9D%B0%E8%A7%86%E9%A2%91%E5%90%88%E9%9B%86.mp4',
-            title: '1'
-          },
-          {
-            src: 'http://opm06mqes.bkt.clouddn.com/%E7%B2%AE%E9%A3%9F%E7%9A%84%E5%AE%B9%E5%99%A8%EF%BC%88%E8%A7%86%E9%A2%91%E5%AE%8C%E6%88%90%E7%89%88%EF%BC%89.mp4',
-            title: '2'
-          },
-          {
-            src: 'http://opm06mqes.bkt.clouddn.com/%E8%94%A1%E9%9B%85%E7%8E%B2%E4%BD%9C%E5%93%81%E5%88%B6%E4%BD%9C%E8%A7%86%E9%A2%91.mp4',
-            title: '3'
-          },
-          {
-            src: 'http://opm06mqes.bkt.clouddn.com/%E9%9D%B3%E6%96%87%E9%BE%99%E4%B8%AA%E4%BA%BA%E8%A7%86%E9%A2%91.mp4',
-            title: '4'
-          }
-        ],
         imgs_swiper: {
           loop: true,
           autoplay: {
@@ -139,7 +121,13 @@
     },
     computed: {
       firstNews() {
-        return this.news[0]
+        if (this.news[0]) return this.news[0]
+        else return {
+          id: '',
+          title: '...',
+          info: '...',
+          picurl: ''
+        }
       },
       newsList() {
         return this.news.slice(1)
@@ -166,6 +154,7 @@
   #index {
     > .swiper {
       width: 100%;
+      min-height: 500px;
       .swiper-img {
         display: block;
         width: 100%;
@@ -251,10 +240,12 @@
             .news-content {
               color: $content-color;
               font-size: 16px;
-              line-height: 1.8;
+              line-height: 30px;
               letter-spacing: 1px;
+              max-height: 90px;
               padding-left: 5px;
               padding-right: 90px;
+              overflow: hidden;
             }
           }
           > .news-img {
@@ -301,8 +292,12 @@
         }
         .movie-name {
           color: $title-color;
+          font-weight: bold;
           font-family: bold;
           line-height: 30px;
+          text-align: center;
+          letter-spacing: 2px;
+          margin-top: 20px;
         }
       }
     }

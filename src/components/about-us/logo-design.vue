@@ -3,7 +3,7 @@
     <h3>Logo设计</h3>
     <p class="indent">日前由傅中望先生设计的双年展logo正式发布。</p>
     <p class="indent">作为本次东湖国际生态雕塑双年展的艺术总监——傅中望先生介绍，logo设计灵感取自唐代著名书法家孙过庭《书谱》中的草书“态”字。</p>
-    <div>
+    <div class="img">
       <img src="static/about_us/tai.png">
       <p>孙过庭  《书谱》  草书”态 ”   唐代</p>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <div id="back">
 
-    <mobile-header type="more"></mobile-header>
+    <mobile-header type="more" :back="back"></mobile-header>
 
     <main class="mobile-main">
       <slot></slot>
@@ -16,6 +16,7 @@
   import mobileFooter from '@/components/mobile/mobile-footer.vue'
 
   export default {
+    props:['back'],
     components: {
       mobileHeader,
       mobileFooter
