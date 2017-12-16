@@ -10,10 +10,11 @@
     </mt-header>
 
     <nav :class="{opened}">
-      <router-link :to="{name: 'about-us'}">关于我们</router-link>
-      <router-link :to="{name: 'artists-and-works'}">参展艺术家·作品</router-link>
-      <router-link :to="{name: 'reports'}">展览报道</router-link>
-      <router-link :to="{name: 'must-know'}">观展须知</router-link>
+      <router-link :to="{name: 'about-us'}">{{$t('m.aboutUs')}}</router-link>
+      <router-link :to="{name: 'artists-and-works'}">{{$t('m.artistCollection')}}</router-link>
+      <router-link :to="{name: 'reports'}">{{$t('m.news')}}</router-link>
+      <router-link :to="{name: 'must-know'}">{{$t('m.notes')}}</router-link>
+      <img src="/static/lang.png" @click="lang=!lang" alt="切换图片">
     </nav>    
   </div>
 
@@ -23,10 +24,16 @@
   export default {
     data() {
       return {
-        opened: false
+        opened: false,
+        lang:true
       }
     },
-    props: ['type', 'back']
+    props: ['type', 'back'],
+        watch: {
+      lang() {
+        this.$i18n.locale = this.lang; //关键语句
+      }
+    },
   }
 </script>
 
@@ -64,6 +71,7 @@
       transform-origin: top;
       transition: 0.5s;
       z-index: 99999;
+              flex-direction: row-reverse;
       &.opened {
         transform: scaleY(1);
       }
@@ -86,6 +94,13 @@
         &:nth-last-child(n + 3) {
           border-bottom: 1px solid $border-color;
         }
+      }
+      img{       
+        flex-direction: row-reverse;
+        $height: 2.5rem;
+        margin-right: 8rem;
+        line-height: $height;
+        height: $height;
       }
     }
   }
