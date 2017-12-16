@@ -1,4 +1,5 @@
 export const m = { 
+    index:'index',//首页
     aboutUs: 'About Us',//关于我们
     artistCollection: 'About Us',//参展艺术家·作品
     news: 'News',//展览报道

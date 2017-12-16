@@ -9,17 +9,18 @@
         <router-link class="link" :to="{name: 'reports'}" active-class="link-active">{{$t('m.news')}}</router-link>
         <router-link class="link" :to="{name: 'must-know'}" active-class="link-active">{{$t('m.notes')}}</router-link>
       </nav>
-        <div class="lang">
-          <el-select v-model="lang">
-            <el-option v-for="lang in langOption" :key="lang.value" :label="lang.label" :value="lang.value"></el-option>
-          </el-select>
-        </div>
+      <div class="lang">
+        <!-- <el-select v-model="lang">
+          <el-option v-for="lang in langOption" :key="lang.value" :label="lang.label" :value="lang.value"></el-option>
+        </el-select> -->
+        <img src="/static/lang.png" @click="lang=!lang" alt="切换语言">
+      </div>
     </header>
 
     <main>
       <keep-alive>
         <transition>
-          <router-view class="main"/>
+          <router-view class="main" />
         </transition>
       </keep-alive>
     </main>
@@ -79,20 +80,20 @@
     data() {
       return {
         langOption: [{
-          value: 'zh-CN',
-          label: '中文'
-        },
-        {
-          value: 'en-US',
-          label: 'English'
-        }
+            value: 'zh-CN',
+            label: '中文'
+          },
+          {
+            value: 'en-US',
+            label: 'English'
+          }
         ],
-        lang: '中文'
+        lang: true
       }
     },
     watch: {
       lang() {
-        this.$i18n.locale = this.lang;//关键语句
+        this.$i18n.locale = this.lang; //关键语句
       }
     },
   }
@@ -103,13 +104,13 @@
   @import "../../assets/scss/pc/theme.scss";
 
   #main {
-    > header {
+    >header {
       text-align: right;
       position: relative;
       height: $header-height;
       min-width: $main-width;
       background-color: #f9f9f9;
-      > .logo {
+      >.logo {
         cursor: pointer;
         margin-top: 10px;
         width: 140px;
@@ -117,9 +118,9 @@
         left: 40px;
         top: 0;
       }
-      > nav {
+      >nav {
         display: inline-block;
-        > .link {
+        >.link {
           @mixin active {
             border-radius: 30px;
             color: #fff;
@@ -152,22 +153,30 @@
       }
       .lang {
         display: inline-block;
-        width: 100px;
+        width: 104px;
+        height: 40px;
         margin-right: 40px;
         top: 10px;
+        img {
+          top: 10px;
+          position: relative;
+          width: 70%;
+          height: 80%;
+          cursor: pointer;
+        }
       }
     }
-    > main {
+    >main {
       min-width: $main-width;
       min-height: 500px;
     }
-    > footer {
+    >footer {
       min-width: $main-width;
       background-color: $footer-backgroundColor;
       margin-top: 80px;
       padding-top: 20px;
       padding-bottom: 35px;
-      > div {
+      >div {
         text-align: left;
         box-sizing: border-box;
         width: $main-width;
@@ -177,15 +186,15 @@
           $p-height: 24px;
           display: flex;
           justify-content: space-between;
-          > div {
+          >div {
             font-size: 13px;
             display: inline-block;
-            > div {
+            >div {
               &:first-child {
                 height: 4 * $p-height;
                 margin-bottom: 30px;
               }
-              > p {
+              >p {
                 line-height: $p-height;
               }
             }
@@ -194,7 +203,7 @@
             }
           }
         }
-        > .logo {
+        >.logo {
           height: 80px;
         }
         .link {
@@ -203,4 +212,5 @@
       }
     }
   }
+
 </style>
