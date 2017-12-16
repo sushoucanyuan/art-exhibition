@@ -13,14 +13,14 @@
       <div class="artist">
         <h4>艺术家</h4>
         <p>ARTISTS</p>
-        <swiper :options="infos_swiper">
-          <swiper-slide v-for="(item, index) in artists" :key="item.id">
+        <swiper :options="artists_swiper">
+          <swiper-slide v-for="(item, index) in artists" :key="item.id" @click="$router.push({name: 'more-artists-detail', params:{id: item.id}})">
             <img class="artist-img" :src="item.picurl">
             <div>
               <div class="artist-artist">
-                <span @click="$router.push({name: 'more-artists-detail', params:{id: item.id}})">{{item.name}}</span>
+                <span>{{item.name}}</span>
               </div>
-              <pre class="artist-description">{{item.info}}</pre>                            
+              <div class="artist-description">{{item.info}}</div>                       
             </div>
           </swiper-slide>
           <div class="info-swiper-pagination" slot="pagination"></div>
@@ -29,20 +29,20 @@
 
       <div class="news">
         <div class="news-main">
+          <h4 class="news-title">{{firstNews.title}}</h4>          
           <div class="news-info">
-            <h4 class="title">{{firstNews.title}}</h4>
-            <p class="news-content">{{firstNews.info}}</p>              
-            <button class="news-link" @click="$router.push({name: 'reports-detail', params: {type: 1, id: firstNews.id}})">查看详情</button>            
+            <div class="news-content">{{firstNews.info}}</div>
+            <img v-if="firstNews.picurl" class="news-img" :src="firstNews.picurl">          
+            <img v-else class="news-img" src="/static/index/news.png">                 
           </div>
-          <img v-if="firstNews.picurl" class="news-img" :src="firstNews.picurl">          
-          <img v-else class="news-img" src="/static/index/news.png">
+          <button class="news-link" @click="$router.push({name: 'reports-detail', params: {type: 1, id: firstNews.id}})">查看详情</button>                      
         </div>
       </div>
 
       <div class="movie">
         <h4>影像视频</h4>
         <p>MOVIE PHOTO</p>
-        <swiper :options="infos_swiper">
+        <swiper :options="movies_swiper">
           <swiper-slide class="movie-container" v-for="(item, index) in movies" :key="index">
             <video class="movie-video" :src="item.src" controls preload="auto" loop></video>
             <div class="movie-name">{{item.name}}</div>
@@ -82,10 +82,19 @@
             }
           }
         },
-        infos_swiper: {
+        artists_swiper: {
           slidesPerView: 2,
           slidesPerGroup: 2,
           spaceBetween: '8%',
+          pagination: {
+            el: '.info-swiper-pagination',
+            clickable: true,
+            renderBullet(index, className) {
+              return `<span class="${className} swiper-pagination-bullet-custom info-pagination"></span>`
+            }
+          }
+        },
+        movies_swiper: {
           pagination: {
             el: '.info-swiper-pagination',
             clickable: true,
@@ -137,11 +146,14 @@
       padding-left: $main-padding;
       padding-right: $main-padding;
       > div {
-        padding-top: 1.2rem;
-        > h4 {
-          font-size: 0.8rem;
+        padding-top: 1.4rem;
+        h4 {
+          font-size: 0.9rem;
+          &.news-title{
+            text-align: center;
+          }
         }
-        > p {
+        p {
           font-size: 0.6rem;
           margin-bottom: 1rem;
           padding-left: 0.1rem;
@@ -163,8 +175,11 @@
           justify-content: space-between;
         }
         .artist-description {
+          color: $content-color;          
           font-size: 0.5rem;
           line-height: 1rem;
+          max-height: 3rem;
+          overflow: hidden;
         }
       }
       > .movie {
@@ -186,32 +201,11 @@
       }
       > .news {
         > .news-main {
-          display: flex;
-          justify-content: space-between;
-          padding-bottom: 1rem;
-      //    border-bottom: 1px solid $content-color;
           > .news-info {
             display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            > .news-link {
-              $height: 2.5rem;
-              cursor: pointer;
-              color: #fff;
-              letter-spacing: 0.2rem;
-              align-self: flex-start;
-              line-height: $height;
-              height: $height;
-              padding: 0 2rem;
-              border: none;
-              border-radius: $height/2;
-              background-color: rgba(7, 171, 133, 1);
-              box-shadow: 0px 10px 12px 2px $shadow-color;
-              transition: 0.2s;
-              &:hover {
-                background-color: rgba(7, 171, 133, 0.8);
-              }
-            }
+            align-items: center;
+            margin-top: 1.2rem;            
             .news-content {
               color: $content-color;
               font-size: 0.8rem;
@@ -219,42 +213,30 @@
               letter-spacing: 0.1rem;
               max-height: 3.6rem;
               padding-left: 0.4rem;
-              padding-right: 1rem;
+              padding-right: 0.4rem;
               overflow: hidden;
             }
+            > .news-img {
+              width: 8rem;
+              border-radius: 0.8rem;
+              box-shadow: 3px 3px 10px 3px $shadow-color;
+            }
           }
-          > .news-img {
+          > .news-link {
+            $height: 2.4rem;
+            color: #fff;
+            letter-spacing: 0.2rem;
             align-self: flex-start;
-            width: 9rem;
-            margin-top: 0.8rem;
-            margin-left: 1rem;
-            border-radius: 0.8rem;
-            box-shadow: 5px 5px 16px 5px $shadow-color;
-          }
-        }
-        > .news-latest {
-          display: flex;
-          justify-content: space-between;
-          > div {
-            $line-height: 1rem;
-            font-size: 1rem;
-            width: 280px;
-            margin-top: 20px;
-            > .news-title {
-              color: $title-color;
-              line-height: $line-height;
-              letter-spacing: 2px;
-              height: $line-height*2;
-              overflow: hidden;
-              margin-bottom: 5px;
-            }
-            > .news-content {
-              font-size: 0.9rem;
-              color: $content-color;
-              line-height: $line-height;
-              height: $line-height*3;
-              padding-right: 25px;
-              overflow: hidden;
+            line-height: $height;
+            width: 100%;
+            margin-top: 1.5rem;
+            border: none;
+            border-radius: $height/2;
+            background-color: rgba(7, 171, 133, 1);
+            box-shadow: 0px 6px 8px 2px $shadow-color;
+            transition: 0.2s;
+            &:hover {
+              background-color: rgba(7, 171, 133, 0.8);
             }
           }
         }

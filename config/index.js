@@ -23,6 +23,13 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {
           '^/upload/image': '/upload/image'
+        },
+      },
+      '/smf/upload/image': {
+        target: 'http://47.97.4.117:8080',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/smf/upload/image': '/smf/upload/image'
         }
       }
     },
