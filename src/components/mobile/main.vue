@@ -3,9 +3,9 @@
 
     <mobile-header type="main"></mobile-header>
 
-    <main class="mobile-main">
+    <main class="mobile-main" :key="key">
       <div style="min-height: 20rem;">
-        <router-view/>
+        <router-view :key="key"/>
       </div>
       <mobile-footer/>
     </main>
@@ -19,6 +19,12 @@
 
   export default {
     name: 'main',
+    computed: {
+      key() {
+        // return this.$route.path.replace(/\//g, '_')
+        return this.$route.name
+      }
+    },
     components:{
       mobileHeader,
       mobileFooter

@@ -11,10 +11,10 @@
 
     <nav :class="{opened}">
       <div class="links">
-        <router-link :class="{cn: lang}" :to="{name: 'about-us'}">{{$t('m.aboutUs')}}</router-link>
-        <router-link :class="{cn: lang}" :to="{name: 'artists-and-works'}">{{$t('m.artistCollection')}}</router-link>
-        <router-link :class="{cn: lang}" :to="{name: 'reports'}">{{$t('m.news')}}</router-link>
-        <router-link :class="{cn: lang}" :to="{name: 'must-know'}">{{$t('m.notes')}}</router-link>        
+        <router-link :class="{cn: lang}" :to="{name: 'about-us'}" @click.native="opened = false">{{$t('m.aboutUs')}}</router-link>
+        <router-link :class="{cn: lang}" :to="{name: 'artists-and-works'}" @click.native="opened = false">{{$t('m.artistCollection')}}</router-link>
+        <router-link :class="{cn: lang}" :to="{name: 'reports'}" @click.native="opened = false">{{$t('m.news')}}</router-link>
+        <router-link :class="{cn: lang}" :to="{name: 'must-know'}" @click.native="opened = false">{{$t('m.notes')}}</router-link>        
       </div>
       <div class="translate" @click="changeLang">
         <img src="static/translate.png" data-rjs="3" />
@@ -29,7 +29,7 @@
   export default {
     data() {
       return {
-        opened: false,
+        opened: false,// 有的浏览器失去焦点事件无效
         lang: true
       }
     },
@@ -45,6 +45,9 @@
         this.$refs.btn.focus()
         this.opened = true
       }
+    },
+    activated() {
+      if (this.$i18n.locale === true || this.$i18n.locale === false) this.lang = this.$i18n.locale
     }
   }
 </script>
@@ -62,7 +65,7 @@
     .back {
       padding-left: 1rem;
     }
-    .button{
+    .button {
       color: #fff;
       border: none;
       background-color: transparent;
@@ -105,41 +108,41 @@
           letter-spacing: 0.15rem;
           box-sizing: border-box;
           height: $height;
-          border-bottom: 1px solid $border-color;          
+          border-bottom: 1px solid $border-color;
           &:nth-child(odd) {
             width: 0.35 * $leave;
             margin-right: $odd-margin;
             padding-left: 1.5rem;
           }
-          &:nth-child(even) {          
-            width: 0.65 * $leave;            
+          &:nth-child(even) {
+            width: 0.65 * $leave;
             margin-right: $even-margin;
           }
           &.cn:nth-child(odd) {
             width: 0.5 * $leave_cn;
-            margin-right: $odd-margin_cn;            
+            margin-right: $odd-margin_cn;
           }
           &.cn:nth-child(even) {
             width: 0.5 * $leave_cn;
-            margin-right: $even-margin_cn;            
+            margin-right: $even-margin_cn;
           }
         }
       }
       > .translate {
         $height: 6rem;
-        color: rgb(255, 255, 255);   
+        color: rgb(255, 255, 255);
         text-align: left;
         letter-spacing: 0.1rem;
-        margin: 1.8rem 1.8rem 2.5rem 1.5rem;   
-        > img{
+        margin: 1.8rem 1.8rem 2.5rem 1.5rem;
+        > img {
           vertical-align: bottom;
           height: 1.2rem;
           margin-bottom: -0.1rem;
         }
-        > span{
+        > span {
           display: inline-block;
-          height: 1.2rem;          
-          vertical-align: bottom;          
+          height: 1.2rem;
+          vertical-align: bottom;
         }
       }
     }

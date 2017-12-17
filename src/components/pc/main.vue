@@ -13,7 +13,7 @@
         <!-- <el-select v-model="lang">
           <el-option v-for="lang in langOption" :key="lang.value" :label="lang.label" :value="lang.value"></el-option>
         </el-select> -->
-        <img :src="require('@/assets/img/lang.png')" @click="lang=!lang" alt="切换语言">
+        <img src="/static/lang.png" @click="lang=!lang" alt="切换语言">
       </div>
     </header>
 

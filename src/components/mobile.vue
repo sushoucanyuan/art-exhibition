@@ -1,7 +1,7 @@
 <template>
   <div id="mobile">
     <keep-alive :exclude="['more-artists-detail' ,'more-works-detail' ,'reports-detail']">
-      <router-view :key="key"/>
+      <router-view/>
     </keep-alive>
   </div>
 </template>
@@ -10,13 +10,7 @@
   import '@/mobile.js'
 
   export default {
-    name: 'mobile',
-    computed: {
-      key() {
-        // return this.$route.path.replace(/\//g, '_')
-        return this.$route.name
-      }
-    }
+    name: 'mobile'
   }
 </script>
 

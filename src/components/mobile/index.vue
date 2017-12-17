@@ -44,7 +44,7 @@
         <p>MOVIE PHOTO</p>
         <swiper :options="movies_swiper">
           <swiper-slide class="movie-container" v-for="(item, index) in movies" :key="index">
-            <video class="movie-video" :src="item.src" controls loop></video>
+            <video class="movie-video" :src="item.src" controls loop preload="auto"></video>
             <div class="movie-name">{{item.name}}</div>
           </swiper-slide>
           <div class="info-swiper-pagination" slot="pagination"></div>
@@ -188,6 +188,14 @@
       }
       > .movie {
         overflow: hidden;
+        .swiper-wrapper {
+          box-sizing: border-box;
+          position: relative;
+          left: -$main-padding;
+          width: 100vw;
+          padding: 0 $main-padding;
+          height: 15rem;
+        }
         .movie-container {
           .movie-video {
             display: block;
