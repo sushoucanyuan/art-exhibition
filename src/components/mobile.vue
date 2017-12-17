@@ -1,6 +1,6 @@
 <template>
   <div id="mobile">
-    <keep-alive>
+    <keep-alive :exclude="['more-artists-detail' ,'more-works-detail' ,'reports-detail']">
       <router-view :key="key"/>
     </keep-alive>
   </div>
@@ -13,7 +13,8 @@
     name: 'mobile',
     computed: {
       key() {
-        return this.$route.path.replace(/\//g, '_')
+        // return this.$route.path.replace(/\//g, '_')
+        return this.$route.name
       }
     }
   }

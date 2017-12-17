@@ -56,6 +56,7 @@
   import { getAllArtists, getArtistAllWorks } from '@/api'
 
   export default {
+    name: 'more-artists-detail',
     props: ['id'],
     data() {
       return {

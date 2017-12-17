@@ -18,7 +18,7 @@
     </header>
 
     <main>
-      <keep-alive>
+      <keep-alive :exclude="['more-artists-detail' ,'more-works-detail' ,'reports-detail']">
         <router-view class="main" />
       </keep-alive>
     </main>

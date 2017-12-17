@@ -13,7 +13,7 @@
                 <div class="swiper-lazy-preloader"></div>                
               </div>
               <div class="author-name">
-                <span @click="$router.push({name: 'more-works-detail', params:{id: artist.id}})">{{artist.name}}</span>
+                <span @click="$router.push({name: 'more-artists-detail', params:{id: artist.id}})">{{artist.name}}</span>
               </div>
             </div>             
           </div>
@@ -43,6 +43,7 @@
   import back from '@/components/mobile/back.vue'
 
   export default {
+    name: 'more-works-detail',
     props: ['id'],
     data() {
       return {

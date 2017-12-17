@@ -25,6 +25,7 @@
   import { getNew } from '@/api'
 
   export default {
+    name: 'reports-detail',
     mixins: [formatDate],
     props: ['type', 'id'],
     data() {

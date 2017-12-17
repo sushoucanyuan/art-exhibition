@@ -14,6 +14,7 @@
   import back from '@/components/mobile/back.vue'
 
   export default {
+    name: 'reports-detail',
     mixins: [formatDate],
     props: ['type', 'id'],
     data() {

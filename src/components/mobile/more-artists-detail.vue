@@ -10,7 +10,7 @@
                 <img :src="item.picurl" data-rjs="3">
               </div>
               <div v-else class="artist-img">
-                <img class="swiper-lazy" src="" :data-src="item.picurl">
+                <img class="swiper-lazy" :data-src="item.picurl">
                 <div class="swiper-lazy-preloader"></div>
               </div>
             </div>
@@ -23,13 +23,13 @@
           </div>
         </div>
         <div class="works" v-for="item in works[index]" :key="item.id">
-          <div class="main-container">
+          <div class="main-container" @click="$router.push({name: 'more-works-detail', params: {id: item.id}})">
             <div class="works-img">
               <img :src="item.picurl" data-rjs="3">
             </div>
             <div class="works-info">
               <h6 class="works-name">
-                <span class="pc-name" @click="$router.push({name: 'more-works-detail', params: {id: item.id}})">{{item.name}}</span>
+                <span>{{item.name}}</span>
               </h6>
               <p class="works-content">{{item.info}}</p>
             </div>
@@ -47,6 +47,7 @@
   import back from '@/components/mobile/back.vue'
 
   export default {
+    name: 'more-artists-detail',
     props: ['id'],
     data() {
       return {
@@ -157,13 +158,13 @@
           justify-content: space-between;
           align-items: center;
           height: 100%;
-          padding: 0 0.5rem;
           > .artist-name {
             font-size: 2.2rem;
             letter-spacing: 0.5rem;
           }
           > .artist-img {
             $side-length: 6rem;
+            flex-shrink: 0;
             position: relative;
             width: $side-length;
             height: $side-length;
@@ -213,7 +214,7 @@
             color: $title-color;
             font-size: 1.1rem;
             letter-spacing: 0.2rem;
-            margin-bottom: 0.5rem;
+            margin: 0.5rem 0;
           }
           > .works-content {
             color: $content-color;

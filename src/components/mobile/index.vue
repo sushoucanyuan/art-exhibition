@@ -187,10 +187,12 @@
         }
       }
       > .movie {
+        overflow: hidden;
         .movie-container {
           .movie-video {
             display: block;
             width: 100%;
+            height: 12rem;
           }
           .movie-name {
             color: $title-color;

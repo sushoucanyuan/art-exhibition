@@ -49,6 +49,7 @@
   import { getAllWorks } from '@/api'
 
   export default {
+    name: 'more-works-detail',
     props: ['id'],
     data() {
       return {
@@ -177,7 +178,6 @@
           text-align: left;
           box-sizing: border-box;
           display: inline-block;
-          width: 200px;
           height: 100px;
           padding-top: 30px;
           > div {
@@ -188,10 +188,10 @@
           }
           > .author-name {
             font-size: 17px;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             white-space: nowrap;
             text-overflow: ellipsis;
-            padding-left: 10px;
+            padding-left: 8px;
           }
           > .author-img {
             position: relative;
