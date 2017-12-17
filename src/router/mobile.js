@@ -66,7 +66,7 @@ const mobileMain = [{
   component: mustKnow
 }]
 
-export default new Router({
+const router = new Router({
   routes: [{
     path: '/',
     component: mobile,
@@ -106,3 +106,5 @@ export default new Router({
     }]
   }]
 })
+
+export default router

@@ -7,7 +7,7 @@
             <div class="artist-main">
               <span class="artist-name">{{item.name}}</span>
               <div v-if="index === initIndex" class="artist-img">
-                <img :src="item.picurl">
+                <img :src="item.picurl" data-rjs="3">
               </div>
               <div v-else class="artist-img">
                 <img class="swiper-lazy" src="" :data-src="item.picurl">
@@ -25,13 +25,13 @@
         <div class="works" v-for="item in works[index]" :key="item.id">
           <div class="main-container">
             <div class="works-img">
-              <img :src="item.picurl">
+              <img :src="item.picurl" data-rjs="3">
             </div>
             <div class="works-info">
               <h6 class="works-name">
                 <span class="pc-name" @click="$router.push({name: 'more-works-detail', params: {id: item.id}})">{{item.name}}</span>
               </h6>
-              <p class="works-content" v-html="item.content"></p>
+              <p class="works-content">{{item.info}}</p>
             </div>
           </div>
         </div>
@@ -181,7 +181,7 @@
     .introduce {
       margin-top: 1rem;
       $font-size: 1.2rem;
-      $line-height: 2 * $font-size;
+      $line-height: 1.8 * $font-size;
       > .main-container {
         font-size: 1rem;
         line-height: $line-height;
@@ -217,7 +217,7 @@
           }
           > .works-content {
             color: $content-color;
-            line-height: 1rem;
+            line-height: 1.5rem;
             letter-spacing: 0.1rem;
           }
         }

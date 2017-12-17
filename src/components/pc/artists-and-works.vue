@@ -7,20 +7,28 @@
 
         <div class="left">
           <div v-for="(item,index) in left" :key="index" @mouseover="mouseover(item.index)" @mouseout="mouseout">
-            <img :src="'/static/works/' + item.src">
+            <img :src="item.src">
             <div class="info">
-              <div class="pc-name">{{item.first}}</div>
-              <div class="pc-name">{{item.second}}</div>
+              <div>
+                <span class="pc-name" @click="$router.push({name: 'more-artists-detail', params:{id: item.author}})">{{item.first}}</span>
+              </div>
+              <div>
+                <span class="pc-name" @click="$router.push({name: 'more-works-detail', params:{id: item.id}})">{{item.second}}</span>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="right">
           <div v-for="(item,index) in right" :key="index" @mouseover="mouseover(item.index)" @mouseout="mouseout">
-            <img :src="'/static/works/' + item.src">
+            <img :src="item.src">
             <div class="info">
-              <div class="pc-name">{{item.first}}</div>
-              <div class="pc-name">{{item.second}}</div>
+              <div>
+                <span class="pc-name" @click="$router.push({name: 'more-artists-detail', params:{id: item.author}})">{{item.first}}</span>
+              </div>
+              <div>
+                <span class="pc-name" @click="$router.push({name: 'more-works-detail', params:{id: item.id}})">{{item.second}}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -31,7 +39,7 @@
 
     <ul class="sidebar">
       <li v-for="(item, index) in sidebar" :key="index" :class="{'mark': hoverImg == index }">
-        <div v-for="(item, index) in item" :key="index">{{item}}</div>
+        <pre v-for="(item, index) in item" :key="index">{{item}}</pre>
       </li>
       <li class="link" title="查看更多作品" @click="$router.push({name: 'more-works'})">更多作品</li>
     </ul>
@@ -50,14 +58,12 @@
         left,
         right,
         sidebar: [
-          ['ASSADOUR MARKAROV', '阿萨杜尔·马科洛夫 生灵'],
-          ['CHRISTOPH MANCKE', 'REFLRCTION'],
-          ['RALFONSO GSCHWEND', 'INFINITY'],
-          ['陈文令 海港'],
-          ['陈志光 四海'],
-          ['傅中望 迁徙'],
-          ['霍波洋 枯荣'],
-          ['姜杰 现在开始'],
+          ['傅中望  迁徙'],
+          ['JAUME PLENSA  永无止境'],
+          ['岳敏君  弯曲的维度'],
+          ['景育民 树影'],
+          ['王度 骰子'],
+          ['朱铭 太极起势']
         ],
         hoverImg: null
       }
@@ -74,6 +80,7 @@
 </script>
 
 <style lang="scss">
+  @import "../../assets/scss/pc/main.scss";
   @import "../../assets/scss/pc/theme.scss";
 
   #artists-and-works {

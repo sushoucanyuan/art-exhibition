@@ -2,9 +2,9 @@
   <back :back="back" id="more-artists">
 
     <div class="main-container">
-      <div class="artist" v-for="item in artists" :key="item.id">
+      <div class="artist" v-for="item in artists" :key="item.id" @click="$router.push({name: 'more-artists-detail', params:{id: item.id}})">
          <div class="artist-img">
-          <img v-lazy="item.picurl">
+          <img v-lazy="item.picurl" data-rjs="3">
         </div>
         <div class="artist-info">
           <div class="artist-name">{{item.name}}</div>

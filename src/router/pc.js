@@ -79,7 +79,7 @@ const pcMain = [
 }, {
   name: 'reports-detail',
   path: 'reports-detail/:type/:id',
-  props: true,  
+  props: true,
   component: reportsDetail
 }]
 
@@ -97,7 +97,9 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  document.body.scrollTop = document.documentElement.scrollTop = 0
+  if (to.name != from.name) {
+    setTimeout(() => document.body.scrollTop = document.documentElement.scrollTop = 0, 200)
+  }
   next()
 })
 

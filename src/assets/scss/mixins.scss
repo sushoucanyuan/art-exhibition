@@ -1,0 +1,7 @@
+@mixin overflow($size) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: box;
+  box-orient: vertical;  
+  line-clamp: $size;
+}

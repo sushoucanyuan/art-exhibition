@@ -4,8 +4,8 @@
     <div class="pc-subpage-container">
 
       <el-breadcrumb class="pc-subpage-breadcrumb" separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{name: 'artists-and-works'}">参展艺术家·作品</el-breadcrumb-item>
-        <el-breadcrumb-item>更多作品</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{name: 'artists-and-works'}">{{$t('m.artistCollection')}}</el-breadcrumb-item>
+        <el-breadcrumb-item>{{$t('m.moreCollections')}}</el-breadcrumb-item>
       </el-breadcrumb>
 
       <div class="pc-subpage-radio">
@@ -48,7 +48,6 @@
     },
     beforeMount() {
       this.getWorks().then(works => {
-        console.log(works)
         for (let i = 0; i < works.length; i += 3) {
           this.gallery.push(works.slice(i, i + 3))
         }

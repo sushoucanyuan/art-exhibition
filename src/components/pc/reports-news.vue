@@ -4,7 +4,7 @@
       <div class="news-item" v-for="item in news" :key="item.id" @click="$router.push({name: 'reports-detail', params:{type, id: item.id}})">
         <img class="news-img" :src="item.picurl">
         <p class="news-date">{{item.publishAt | formatDate}}</p>
-        <p class="news-description"><img v-if="type == '0'" :src="require('@/assets/img/hot.gif')"> {{item.info}}</p>
+        <p class="news-description"><img v-if="type == '0'" :src="require('@/assets/img/hot.gif')"> {{item.info | climp(44)}}</p>
       </div>
     </div>
     <el-pagination class="pagination" :total="count" :page-size="4" :current-page.sync="page" layout="prev, pager, next, total" @current-change="page_change"></el-pagination>
@@ -12,11 +12,12 @@
 </template>
 
 <script>
+  import climp from '@/mixins/climp'
   import formatDate from '@/mixins/formatDate'
   import { getNews, getNewsCount } from '@/api'
 
   export default {
-    mixins: [formatDate],
+    mixins: [formatDate,climp],
     props: ['type'],
     data() {
       return {

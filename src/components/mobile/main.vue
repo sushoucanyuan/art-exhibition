@@ -4,12 +4,8 @@
     <mobile-header type="main"></mobile-header>
 
     <main class="mobile-main">
-      <div style="min-height: 20rem；">
-        <keep-alive>
-          <transition>
-            <router-view/>
-          </transition>
-        </keep-alive>        
+      <div style="min-height: 20rem;">
+        <router-view/>
       </div>
       <mobile-footer/>
     </main>

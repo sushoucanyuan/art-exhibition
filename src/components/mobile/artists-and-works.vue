@@ -5,21 +5,29 @@
 
       <div class="left">
         <div v-for="(item,index) in left" :key="index">
-          <img :src="'/static/works/' + item.src">
-          <div class="info">
-            <div>{{item.first}}</div>
-            <div>{{item.second}}</div>
-          </div>
+          <img :src="item.src">
+            <div class="info" data-rjs="3">
+              <div>
+                <span class="pc-name" @click="$router.push({name: 'more-artists-detail', params:{id: item.author}})">{{item.first}}</span>
+              </div>
+              <div>
+                <span class="pc-name" @click="$router.push({name: 'more-works-detail', params:{id: item.id}})">{{item.second}}</span>
+              </div>
+            </div>
         </div>
       </div>
 
       <div class="right">
         <div v-for="(item,index) in right" :key="index">
-          <img :src="'/static/works/' + item.src">
-          <div class="info">
-            <div>{{item.first}}</div>
-            <div>{{item.second}}</div>
-          </div>
+          <img :src="item.src" data-rjs="3">
+            <div class="info">
+              <div>
+                <span class="pc-name" @click="$router.push({name: 'more-artists-detail', params:{id: item.author}})">{{item.first}}</span>
+              </div>
+              <div>
+                <span class="pc-name" @click="$router.push({name: 'more-works-detail', params:{id: item.id}})">{{item.second}}</span>
+              </div>
+            </div>
         </div>
       </div>
 

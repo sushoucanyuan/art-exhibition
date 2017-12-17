@@ -3,7 +3,7 @@
 
     <swiper class="swiper" :options="imgs_swiper">
       <swiper-slide v-for="(item, index) in imgs" :key="index">
-        <img class="swiper-img" :src="'static/index/' + item">
+        <img class="swiper-img" :src="'static/index/' + item" data-rjs="3">
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -14,13 +14,13 @@
         <h4>艺术家</h4>
         <p>ARTISTS</p>
         <swiper :options="artists_swiper">
-          <swiper-slide v-for="(item, index) in artists" :key="item.id" @click="$router.push({name: 'more-artists-detail', params:{id: item.id}})">
-            <img class="artist-img" :src="item.picurl">
+          <swiper-slide v-for="(item, index) in artists" :key="item.id" @click.native="$router.push({name: 'more-artists-detail', params:{id: item.id}})">
+            <img class="artist-img" :src="item.picurl" data-rjs="3">
             <div>
               <div class="artist-artist">
                 <span>{{item.name}}</span>
               </div>
-              <div class="artist-description">{{item.info}}</div>                       
+              <div class="artist-description">{{item.info | climp(32)}}</div>                       
             </div>
           </swiper-slide>
           <div class="info-swiper-pagination" slot="pagination"></div>
@@ -31,9 +31,9 @@
         <div class="news-main">
           <h4 class="news-title">{{firstNews.title}}</h4>          
           <div class="news-info">
-            <div class="news-content">{{firstNews.info}}</div>
-            <img v-if="firstNews.picurl" class="news-img" :src="firstNews.picurl">          
-            <img v-else class="news-img" src="/static/index/news.png">                 
+            <div class="news-content">{{firstNews.info | climp(32)}}</div>
+            <img v-if="firstNews.picurl" class="news-img" :src="firstNews.picurl" data-rjs="3">          
+            <img v-else class="news-img" src="/static/index/news.png" data-rjs="3">                 
           </div>
           <button class="news-link" @click="$router.push({name: 'reports-detail', params: {type: 1, id: firstNews.id}})">查看详情</button>                      
         </div>
@@ -44,7 +44,7 @@
         <p>MOVIE PHOTO</p>
         <swiper :options="movies_swiper">
           <swiper-slide class="movie-container" v-for="(item, index) in movies" :key="index">
-            <video class="movie-video" :src="item.src" controls preload="auto" loop></video>
+            <video class="movie-video" :src="item.src" controls loop></video>
             <div class="movie-name">{{item.name}}</div>
           </swiper-slide>
           <div class="info-swiper-pagination" slot="pagination"></div>
@@ -57,10 +57,12 @@
 </template>
 
 <script>
+  import climp from '@/mixins/climp'
   import { imgs, movies } from '@/common/data/index'
   import { getTopAuthorList, getTopNewsList } from '@/api'
 
   export default {
+    mixins: [climp],
     data() {
       return {
         imgs,
@@ -135,6 +137,7 @@
 </script>
 
 <style lang="scss">
+  @import "../../assets/scss/mixins.scss";
   @import "../../assets/scss/mobile/theme.scss";
 
   #index {
@@ -149,7 +152,7 @@
         padding-top: 1.4rem;
         h4 {
           font-size: 0.9rem;
-          &.news-title{
+          &.news-title {
             text-align: center;
           }
         }
@@ -175,7 +178,8 @@
           justify-content: space-between;
         }
         .artist-description {
-          color: $content-color;          
+          @include overflow(3);
+          color: $content-color;
           font-size: 0.5rem;
           line-height: 1rem;
           max-height: 3rem;
@@ -205,7 +209,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 1.2rem;            
+            margin-top: 1.2rem;
             .news-content {
               color: $content-color;
               font-size: 0.8rem;

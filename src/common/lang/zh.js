@@ -8,7 +8,11 @@ export const m = {
     wanted: '征稿启示',//征稿启示
     designLogo: 'LOGO设计',//LOGO设计
     council: '艺术委员会',//艺术委员会
-    more: '更多作品',//更多作品
+    moreArtist: '更多艺术家 ',//更多艺术家      
+    moreCollections: '更多作品',//更多作品
+    hotNews: '热点新闻',//热点新闻
+    latests: '最新资讯',//最新资讯
+    related: '相关视频 ',//相关视频      
     search: '查询信息',//查询信息
     local: '湖北省武汉市',//地址
     address:'东湖高新区九蜂街道石门峰路9号',

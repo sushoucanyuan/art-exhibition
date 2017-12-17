@@ -5,8 +5,8 @@
 
       <div>
         <el-breadcrumb class="pc-subpage-breadcrumb" separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item :to="{name: 'reports'}">展览报道</el-breadcrumb-item>
-          <el-breadcrumb-item>热点新闻</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{name: 'reports'}">{{$t('m.news')}}</el-breadcrumb-item>
+          <el-breadcrumb-item>{{$t('m.'+ name)}}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
 
@@ -24,7 +24,7 @@
   import formatDate from '@/mixins/formatDate'
   import { getNew } from '@/api'
 
-  export default {    
+  export default {
     mixins: [formatDate],
     props: ['type', 'id'],
     data() {
@@ -34,6 +34,15 @@
           title: '',
           publishAt: '',
           content: ''
+        }
+      }
+    },
+    computed: {
+      name() {
+        switch (this.type) {
+          case (0): return 'hotNews'
+          case (1): return 'latests'
+          case (2): return 'related'
         }
       }
     },
@@ -74,7 +83,7 @@
           font-size: 12px;
           margin: 20px 0;
         }
-        > .content{
+        > .content {
           line-height: 2;
           text-align: left;
         }

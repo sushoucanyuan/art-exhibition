@@ -47,8 +47,8 @@ export const getArtistAllWorks = params =>
   axios.get('getAuthorWork/' + params.id).then(({ data }) => {
     let works = data.Art_works
     return works.map(item => {
-      let { id, name, picurl, content } = item
-      return { id, name, picurl, content }
+      let { id, name, picurl, info } = item
+      return { id, name, picurl, info }
     })
   })
 

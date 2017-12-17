@@ -1,9 +1,7 @@
 <template>
   <div id="mobile">
     <keep-alive>
-      <transition>
-        <router-view/>
-      </transition>
+      <router-view :key="key"/>
     </keep-alive>
   </div>
 </template>
@@ -12,7 +10,12 @@
   import '@/mobile.js'
 
   export default {
-    name: 'mobile'
+    name: 'mobile',
+    computed: {
+      key() {
+        return this.$route.path.replace(/\//g, '_')
+      }
+    }
   }
 </script>
 
@@ -22,7 +25,7 @@
   #mobile {
     // 覆盖头部组件样式
     .mint-header {
-      font-size: 1rem;
+      font-size: 1.2rem;
       letter-spacing: 0.15rem;
       height: $header-height;
       background-color: $header-backgroundColor;

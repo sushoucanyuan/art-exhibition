@@ -22,7 +22,7 @@
               <div class="artist-name">
                 <span class="pc-name" @click="$router.push({name: 'more-artists-detail', params:{id: item.id}})">{{item.name}}</span>
               </div>
-              <pre class="artist-brief">{{item.info}}</pre>              
+              <p class="artist-brief">{{item.info | climp(44)}}</p>              
               <router-link class="artist-link" :to="{name: 'more-artists-detail', params: {id: item.id}}">艺术作品 &gt;</router-link>
             </div>
           </swiper-slide>
@@ -34,7 +34,7 @@
         <div class="news-main">
           <div class="news-info">
             <h4 class="title">{{firstNews.title}}</h4>
-            <p class="news-content">{{firstNews.info}}</p>              
+            <p class="news-content">{{firstNews.info | climp(70)}}</p>              
             <button class="news-link" @click="$router.push({name: 'reports-detail', params: {type: 1, id: firstNews.id}})">查看详情</button>            
           </div>
           <img v-if="firstNews.picurl" class="news-img" :src="firstNews.picurl">          
@@ -45,7 +45,7 @@
             <h4 class="news-title">
               <span class="pc-name" @click="$router.push({name:'reports-detail', params: {type: 1, id: item.id}})">{{item.title}}</span>
             </h4>
-            <p class="news-content">{{item.info}}</p>            
+            <p class="news-content">{{item.info | climp(44)}}</p>            
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
         <p class="subtitle">MOVIE PHOTO</p>
         <swiper :options="works_swiper">
           <swiper-slide v-for="(item, index) in movies" :key="index">
-            <video class="movie-video" :src="item.src" controls preload="auto" loop></video>
+            <video class="movie-video" :src="item.src" controls loop></video>
             <div class="movie-name">{{item.name}}</div>
           </swiper-slide>
           <div class="info-swiper-pagination" slot="pagination"></div>
@@ -67,10 +67,12 @@
 </template>
 
 <script>
+  import climp from '@/mixins/climp'
   import { imgs, movies } from '@/common/data/index'
   import { getTopAuthorList, getTopNewsList } from '@/api'
 
   export default {
+    mixins: [climp],
     data() {
       return {
         imgs,

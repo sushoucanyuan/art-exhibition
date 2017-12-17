@@ -6,22 +6,22 @@
           <div class="author-container">
             <div class="author">
               <div v-if="index === initIndex" class="author-img">
-                <img :src="artist.src">                
+                <img :src="artist.src" data-rjs="3">                
               </div>
               <div v-else class="author-img">
                 <img class="swiper-lazy" :data-src="artist.src">
                 <div class="swiper-lazy-preloader"></div>                
               </div>
               <div class="author-name">
-                <span>{{artist.name}}</span>
+                <span @click="$router.push({name: 'more-works-detail', params:{id: artist.id}})">{{artist.name}}</span>
               </div>
             </div>             
           </div>
           <div v-if="index === initIndex" class="work-img">
-            <img :src="item.picurl">                
+            <img :src="item.picurl" data-rjs="3">                
           </div>
           <div v-else class="work-img">
-            <img class="swiper-lazy" :data-src="item.picurl">
+            <img class="swiper-lazy" :data-src="item.picurl" data-rjs="3">
             <div class="swiper-lazy-preloader"></div>                
           </div>
           <div class="pc-subpage-container">

@@ -3,8 +3,8 @@
 
     <div class="pc-subpage-container">
       <el-breadcrumb class="pc-subpage-breadcrumb" separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{name: 'artists-and-works'}">参展艺术家·作品</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{name: 'more-works'}">更多作品</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{name: 'artists-and-works'}">{{$t('m.artistCollection')}}</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{name: 'more-works'}">{{$t('m.moreCollections')}}</el-breadcrumb-item>
         <el-breadcrumb-item :to="{name: 'more-artists-detail', params:{id: artist.id}}">{{artist.name}}</el-breadcrumb-item>        
         <el-breadcrumb-item>{{name}}</el-breadcrumb-item>
       </el-breadcrumb>   
@@ -173,7 +173,7 @@
       .author-container {
         text-align: right;
         .author {
-          $side-length: 40px;
+          $side-length: 52px;
           text-align: left;
           box-sizing: border-box;
           display: inline-block;

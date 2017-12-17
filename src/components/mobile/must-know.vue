@@ -1,7 +1,7 @@
 <template>
   <div id="must-know">
 
-    <img class="header" src="static/must_know/header.png">
+    <img class="header" src="static/must_know/header.png" data-rjs="3">
 
     <div class="main">
       <h6>开幕时间 OPENING TIME</h6>

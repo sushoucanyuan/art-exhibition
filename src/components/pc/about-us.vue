@@ -11,7 +11,7 @@
 
       <div class="nav">
         <div v-for="(item, index) in links" :key="index">
-          <a class="pc-link" :class="{'active': component == item.component}" @click="component = item.component">{{item.name}}</a>
+          <a class="pc-link" :class="{'active': component == item.component}" @click="component = item.component">{{$t('m.'+ item.name)}}</a>
         </div>
       </div>
 
@@ -30,16 +30,16 @@
     data() {
       return {
         links: [{
-          name: '关于双年展',
+          name: 'aboutBiennale',
           component: 'aboutExhibition'
         }, {
-          name: '征稿启示',
+          name: 'wanted',
           component: 'callForPapers'
         }, {
-          name: 'LOGO设计',
+          name: 'designLogo',
           component: 'logoDesign'
         }, {
-          name: '艺术委员会',
+          name: 'council',
           component: 'committee'
         }],
         component: 'aboutExhibition'
@@ -63,7 +63,7 @@
       width: 100%;
     }
     > .main {
-      $nav-widh: 120px;
+      $nav-widh: 220px;
       $info-width: 680px;
       $space-betewwn: 60px;
       display: flex;

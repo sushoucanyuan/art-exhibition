@@ -3,8 +3,8 @@
 
     <div class="pc-subpage-container">
       <el-breadcrumb class="pc-subpage-breadcrumb" separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{name: 'artists-and-works'}">参展艺术家·作品</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{name: 'more-artists'}">更多艺术家</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{name: 'artists-and-works'}">{{$t('m.artistCollection')}}</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{name: 'more-artists'}">{{$t('m.moreArtist')}}</el-breadcrumb-item>
         <el-breadcrumb-item>{{name}}</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
@@ -40,7 +40,7 @@
               <h6 class="works-name">
                 <span class="pc-name" @click="$router.push({name: 'more-works-detail', params: {id: item.id}})">{{item.name}}</span>
               </h6>
-              <p class="works-content" v-html="item.content"></p>
+              <p class="works-content">{{item.info}}</p>
             </div>            
           </div>          
         </div>

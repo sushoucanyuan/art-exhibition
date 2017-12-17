@@ -48,6 +48,7 @@
       .news-container {
         flex-wrap: wrap;
         display: flex;
+        align-items: flex-start;
         min-height: 570px;
         padding-top: 30px;
         > .news-item {
@@ -60,6 +61,9 @@
           }
           &:nth-child(even) {
             padding-left: 20px;
+          }
+          &:hover > .news-description{
+            text-decoration: underline;
           }
           > .news-img {
             display: block;

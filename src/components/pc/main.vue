@@ -13,15 +13,13 @@
         <!-- <el-select v-model="lang">
           <el-option v-for="lang in langOption" :key="lang.value" :label="lang.label" :value="lang.value"></el-option>
         </el-select> -->
-        <img src="/static/lang.png" @click="lang=!lang" alt="切换语言">
+        <img :src="require('@/assets/img/lang.png')" @click="lang=!lang" alt="切换语言">
       </div>
     </header>
 
     <main>
       <keep-alive>
-        <transition>
-          <router-view class="main" />
-        </transition>
+        <router-view class="main" />
       </keep-alive>
     </main>
 
@@ -51,7 +49,7 @@
             <router-link class="link" tag="p" :to="{name: 'about-us'}">{{$t('m.aboutUs')}}</router-link>
             <router-link class="link" tag="p" :to="{name: 'artists-and-works'}">{{$t('m.artistCollection')}}</router-link>
             <router-link class="link" tag="p" :to="{name: 'reports'}">{{$t('m.news')}}</router-link>
-            <router-link class="link" tag="p" :to="{name: 'must-know'}">{{$t('m.click')}}</router-link>
+            <router-link class="link" tag="p" :to="{name: 'must-know'}">{{$t('m.notes')}}</router-link>
           </div>
           <div>
             <p>武汉天气</p>
@@ -153,15 +151,12 @@
       }
       .lang {
         display: inline-block;
-        width: 104px;
-        height: 40px;
+        height: $header-height;
         margin-right: 40px;
-        top: 10px;
+        vertical-align: top;
         img {
-          top: 10px;
-          position: relative;
-          width: 70%;
-          height: 80%;
+          height: 60%;
+          margin-top: 20%;
           cursor: pointer;
         }
       }
@@ -181,7 +176,7 @@
         box-sizing: border-box;
         width: $main-width;
         margin: 0 auto;
-        padding: 0 150px;
+        padding: 0 100px;
         &:nth-child(2) {
           $p-height: 24px;
           display: flex;
@@ -192,6 +187,7 @@
             >div {
               &:first-child {
                 height: 4 * $p-height;
+                max-width: 300px;
                 margin-bottom: 30px;
               }
               >p {

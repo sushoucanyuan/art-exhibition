@@ -4,7 +4,9 @@
     <mobile-header type="more" :back="back"></mobile-header>
 
     <main class="mobile-main">
-      <slot></slot>
+      <div style="min-height: 20rem;">
+        <slot></slot>
+      </div>
       <mobile-footer/>
     </main>
 

@@ -1,6 +1,6 @@
 <template>
   <back :back="back">
-    <div class="reports-container">
+    <div id="reports-detail">
       <h4>{{news.title}}</h4>
       <div class="date">{{news.publishAt | formatDate}}</div>
       <div class="content" v-html="news.content"></div>      
@@ -44,10 +44,10 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   @import "../../assets/scss/mobile/theme.scss";
 
-  .reports-container {
+  #reports-detail {
     padding-top: 3rem;
     padding-left: $main-padding;
     padding-right: $main-padding;
@@ -61,6 +61,9 @@
     .content {
       line-height: 1.8;
       text-align: left;
+      img {
+        width: 100%;
+      }
     }
   }
 </style>
