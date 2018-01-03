@@ -61,9 +61,9 @@
           ['傅中望  迁徙'],
           ['JAUME PLENSA  永无止境'],
           ['岳敏君  弯曲的维度'],
-          ['景育民 树影'],
-          ['王度 骰子'],
-          ['朱铭 太极起势']
+          ['景育民  树影'],
+          ['王度  骰子'],
+          ['朱铭  太极起势']
         ],
         hoverImg: null
       }
@@ -128,9 +128,9 @@
       }
     }
     > .sidebar {
-      $color: rgb(56, 56, 56);
+      $color: rgb(0, 0, 0);
       color: $color;
-      font-size: 12px;
+      font-size: 13px;
       line-height: 20px;
       letter-spacing: 1px;
       text-align: left;
@@ -147,7 +147,7 @@
         }
         &.link {
           cursor: pointer;
-          color: $link-color;
+          color: #949494;
         }
         &::before {
           content: "";

@@ -1,9 +1,9 @@
 <template>
   <div id="index">
-
+ 
     <swiper class="swiper" :options="imgs_swiper">
-      <swiper-slide v-for="(item, index) in imgs" :key="index">
-        <img class="swiper-img" :src="'static/index/' + item" data-rjs="3">
+      <swiper-slide v-for="item in banners" :key="item.id">
+        <img class="swiper-img" :src="item.picurl" data-rjs="3">
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -14,7 +14,7 @@
         <h4>艺术家</h4>
         <p>ARTISTS</p>
         <swiper :options="artists_swiper">
-          <swiper-slide v-for="(item, index) in artists" :key="item.id" @click.native="$router.push({name: 'more-artists-detail', params:{id: item.id}})">
+          <swiper-slide v-for="item in artists" :key="item.id" @click.native="$router.push({name: 'more-artists-detail', params:{id: item.id}})">
             <img class="artist-img" :src="item.picurl" data-rjs="3">
             <div>
               <div class="artist-artist">
@@ -59,18 +59,19 @@
 <script>
   import climp from '@/mixins/climp'
   import { imgs, movies } from '@/common/data/index'
-  import { getTopAuthorList, getTopNewsList } from '@/api'
+  import { getTopBannerList, getTopAuthorList, getTopNewsList } from '@/api'
 
   export default {
     mixins: [climp],
     data() {
       return {
         imgs,
+        banners: [],
         artists: [],
         news: [],
         movies,
         imgs_swiper: {
-          loop: true,
+         // loop: true,
           autoplay: {
             delay: 5000,
             disableOnInteraction: false
@@ -123,9 +124,13 @@
     },
     methods: {
       getTopAuthorList,
-      getTopNewsList
+      getTopNewsList,
+      getTopBannerList
     },
     beforeMount() {
+      this.getTopBannerList().then(banners => {
+        this.banners = banners
+      })
       this.getTopAuthorList().then(artists => {
         this.artists = artists
       })
@@ -188,15 +193,16 @@
       }
       > .movie {
         overflow: hidden;
-        .swiper-wrapper {
+        .swiper-container {
           box-sizing: border-box;
           position: relative;
           left: -$main-padding;
           width: 100vw;
-          padding: 0 $main-padding;
-          height: 15rem;
         }
         .movie-container {
+          box-sizing: border-box;
+          padding: 0 $main-padding;
+          height: 15rem;          
           .movie-video {
             display: block;
             width: 100%;

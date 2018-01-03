@@ -47,7 +47,7 @@
 
 <style lang="scss">
   @import "../../assets/scss/mobile/theme.scss";
-  
+
   #reports {
     padding-left: $main-padding;
     padding-right: $main-padding;
@@ -61,28 +61,32 @@
         white-space: nowrap;
         padding: 0.75rem 0 0.75rem 0.2rem;
         overflow: hidden;
+        h6 {
+          color: #a7a7a7;
+          font-size: 0.6rem;
+          &:nth-child(2) {
+            font-weight: normal;
+            padding-top: 0.1rem;
+          }
+        }
         &.is-selected {
           border-bottom: none;
-          color: $mark-color;
         }
-        h6 {
-          font-size: 0.6rem
-        }
-        h6:nth-child(2) {
-          font-weight: normal;
-          padding-top: 0.1rem;
+        &.is-selected h6 {
+          color: #000;
         }
       }
     }
     > .info {
-      .pagination{
+      .pagination {
         text-align: right;
         margin: 1rem 0;
       }
       .news {
         flex-wrap: wrap;
         display: flex;
-        min-height: 26rem;
+        align-items: flex-start;
+        min-height: 32rem;
         .news-container {
           box-sizing: border-box;
           width: 50%;
@@ -90,26 +94,37 @@
           > .news-img {
             display: block;
             width: 100%;
-            height: 6.2rem;
+            height: 6.5rem;
           }
           > .news-date {
             opacity: 0.7;
-            font-size: 0.75rem;
-            padding: 0.7rem 0;
+            font-size: 0.8rem;
+            font-weight: lighter;
+            line-height: 1rem;
+            padding: 0.75rem 0;
           }
-          > .news-description {
-            $line-height: 1.2rem;
+          $line-height: 1.2rem;
+          > .news-title {
+            color: $title-color;
             font-size: 0.75rem;
+            font-weight: bold;
             line-height: $line-height;
-            height: 3 * $line-height;
+            height: 2 * $line-height;
             overflow: hidden;
-            text-overflow: ellipsis;
-            > .hot{
+            > .icon {
               height: 1rem;
             }
           }
-        }    
-        .news-container:nth-child(even){
+          > .news-description {
+            color: $content-color;
+            font-size: 0.75rem;
+            line-height: $line-height;
+            height: 3 * $line-height;
+            margin-top: 0.2rem;
+            overflow: hidden;
+          }
+        }
+        .news-container:nth-child(even) {
           padding-left: 0.8rem;
         }
       }

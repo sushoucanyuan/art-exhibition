@@ -2,8 +2,8 @@
   <div id="index">
 
     <swiper class="swiper" :options="imgs_swiper">
-      <swiper-slide v-for="(item, index) in imgs" :key="index">
-        <img class="swiper-img" :src="'/static/index/' + item">
+      <swiper-slide v-for="item in banners" :key="item.id">
+        <img class="swiper-img" :src="item.picurl">
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -14,7 +14,7 @@
         <h4 class="title">艺术家</h4>
         <p class="subtitle">ARTISTS</p>
         <swiper ref="artists_swiper" :options="artists_swiper">
-          <swiper-slide v-for="(item, index) in artists" :key="item.id">
+          <swiper-slide v-for="item in artists" :key="item.id">
             <div style="position: relative;">
               <img class="artist-img" :src="item.picurl"/>
             </div>
@@ -69,7 +69,7 @@
 <script>
   import climp from '@/mixins/climp'
   import { imgs, movies } from '@/common/data/index'
-  import { getTopAuthorList, getTopNewsList } from '@/api'
+  import { getTopBannerList, getTopAuthorList, getTopNewsList } from '@/api'
 
   export default {
     mixins: [climp],
@@ -77,10 +77,11 @@
       return {
         imgs,
         movies,
+        banners: [],
         artists: [],
         news: [],
         imgs_swiper: {
-          loop: true,
+        //  loop: true,
           autoplay: {
             delay: 5000,
             disableOnInteraction: false
@@ -136,10 +137,14 @@
       }
     },
     methods: {
+      getTopBannerList,
       getTopAuthorList,
       getTopNewsList
     },
     beforeMount() {
+      this.getTopBannerList().then(banners => {
+        this.banners = banners
+      })
       this.getTopAuthorList().then(artists => {
         this.artists = artists
       })
@@ -206,7 +211,7 @@
           overflow: hidden;
         }
         .artist-link {
-          color: #f97d56;
+          color: $link-color;
           display: inline-block;
           margin-top: 20px;
         }

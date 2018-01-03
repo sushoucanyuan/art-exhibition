@@ -12,24 +12,31 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/open/api': {
-        target: 'http://47.97.4.117:8080',
+        target: 'http://smf.whztygj.com',
         changeOrigin: true,
         pathRewrite: {
           '^/open/api': '/open/api'
         }
       },
       '/upload/image': {
-        target: 'http://47.97.4.117:8080',
+        target: 'http://smf.whztygj.com',
         changeOrigin: true,
         pathRewrite: {
           '^/upload/image': '/upload/image'
         },
       },
       '/smf/upload/image': {
-        target: 'http://47.97.4.117:8080',
+        target: 'http://smf.whztygj.com',
         changeOrigin: true,
         pathRewrite: {
           '^/smf/upload/image': '/smf/upload/image'
+        }
+      },
+      '/v3/weather': {
+        target: 'https://api.seniverse.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/v3/weather': '/v3/weather'
         }
       }
     },

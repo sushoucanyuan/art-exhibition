@@ -13,12 +13,7 @@
         <h4>展览地址 PAVILION ADRESS</h4>
         <p>湖北省武汉市东湖高新区九峰街道石门峰路9号</p>
         <p>可搭乘18路、20路、518路至石门峰纪念公园</p>
-        <p class="link">地图&nbsp;<i class="icon-fenxiang iconfont"></i></p>
-        <h4>室内外地图指引</h4>
-        <p>室内地图</p>
-        <img src="/static/must_know/map.png">
-        <p>室外地图</p> 
-        <img src="/static/must_know/map.png">
+        <p><a class="link" href="http://j.map.baidu.com/oUC2N">地图&nbsp;<i class="icon-fenxiang iconfont"></i></a></p>
       </div>
 
     </div>
@@ -59,9 +54,11 @@
             color: $title-color;
             line-height: 20px;
             letter-spacing: 3px;
-            &.link{
+            a.link{
               cursor: pointer;
               color: $link-color;
+              display: block;
+              margin-top: 60px;              
             }
           }
           > img {

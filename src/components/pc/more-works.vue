@@ -69,7 +69,7 @@
         margin-bottom: 20px;
       }
       > div {
-        $info-height: 44px;
+        $info-height: 60px;
         $info-padding: 10px;
         height: 240px;
         max-width: 40%;

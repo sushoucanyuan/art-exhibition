@@ -30,9 +30,9 @@
       <div>
         <div>
           <div>
-            <p>{{$t('m.tel')}}</p>
             <p>{{$t('m.local')}}</p>
             <p>{{$t('m.address')}}</p>
+            <p>{{$t('m.tel')}}</p>            
           </div>
           <div>
             <p>{{$t('m.click')}}</p>
@@ -52,19 +52,21 @@
             <router-link class="link" tag="p" :to="{name: 'must-know'}">{{$t('m.notes')}}</router-link>
           </div>
           <div>
-            <p>武汉天气</p>
-            <p>16℃ | 7℃</p>
+            <p>© 东湖雕塑艺术馆</p>
           </div>
         </div>
         <div>
-          <div>
-            <p>{{$t('m.visit')}}</p>
-            <p>{{$t('m.infomation')}}</p>
-            <p>{{$t('m.artistic')}}</p>
-            <p>{{$t('m.contact')}}</p>
-          </div>
-          <div>
-            <p>© 东湖雕塑艺术馆</p>
+          <div v-if="high != undefined && low != undefined">
+            <p>
+              <div class="weather">
+                <img src="/static/weather.png">
+                <div>
+                  <div>武汉天气</div>
+                  <div>{{high}}℃ | {{low}}℃</div>
+                </div>
+              </div>
+            </p>
+            <p class="src">天气来源：心知天气</p>
           </div>
         </div>
       </div>
@@ -74,41 +76,53 @@
 </template>
 
 <script>
+  import { getWeather } from '@/api'
+
   export default {
     data() {
       return {
         langOption: [{
-            value: 'zh-CN',
-            label: '中文'
-          },
-          {
-            value: 'en-US',
-            label: 'English'
-          }
+          value: 'zh-CN',
+          label: '中文'
+        },
+        {
+          value: 'en-US',
+          label: 'English'
+        }
         ],
-        lang: true
+        lang: true,
+        high: undefined,
+        low: undefined
       }
+    },
+    methods: {
+      getWeather
     },
     watch: {
       lang() {
         this.$i18n.locale = this.lang; //关键语句
       }
     },
+    beforeMount() {
+      this.getWeather().then(({ high, low }) => {
+        this.high = high
+        this.low = low
+      })
+    }
   }
-
 </script>
 
 <style scoped lang="scss">
   @import "../../assets/scss/pc/theme.scss";
 
   #main {
-    >header {
+    > header {
       text-align: right;
       position: relative;
       height: $header-height;
       min-width: $main-width;
       background-color: #f9f9f9;
-      >.logo {
+      > .logo {
         cursor: pointer;
         margin-top: 10px;
         width: 140px;
@@ -116,9 +130,9 @@
         left: 40px;
         top: 0;
       }
-      >nav {
+      > nav {
         display: inline-block;
-        >.link {
+        > .link {
           @mixin active {
             border-radius: 30px;
             color: #fff;
@@ -161,37 +175,50 @@
         }
       }
     }
-    >main {
+    > main {
       min-width: $main-width;
       min-height: 500px;
     }
-    >footer {
+    > footer {
+      color: #4d4d4f;
+      font-weight: bold;
       min-width: $main-width;
       background-color: $footer-backgroundColor;
       margin-top: 80px;
-      padding-top: 20px;
+      padding-top: 60px;
       padding-bottom: 35px;
-      >div {
+      > div {
         text-align: left;
         box-sizing: border-box;
         width: $main-width;
         margin: 0 auto;
         padding: 0 100px;
         &:nth-child(2) {
-          $p-height: 24px;
+          $p-height: 32px;
           display: flex;
           justify-content: space-between;
-          >div {
+          > div {
             font-size: 13px;
             display: inline-block;
-            >div {
+            > div {
               &:first-child {
                 height: 4 * $p-height;
                 max-width: 300px;
                 margin-bottom: 30px;
               }
-              >p {
+              > p {
                 line-height: $p-height;
+                &.src {
+                  color: #808080;
+                }
+              }
+              > .weather {
+                display: flex;
+                align-items: flex-start;
+                > img {
+                  width: 36px;
+                  margin-right: 12px;
+                }
               }
             }
             img {
@@ -199,8 +226,9 @@
             }
           }
         }
-        >.logo {
-          height: 80px;
+        > .logo {
+          width: 160px;
+          margin-bottom: 20px;
         }
         .link {
           cursor: pointer;
@@ -208,5 +236,4 @@
       }
     }
   }
-
 </style>

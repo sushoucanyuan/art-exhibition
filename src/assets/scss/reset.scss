@@ -1,6 +1,9 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a,
@@ -17,10 +20,4 @@ button:focus{
 
 li {
   list-style: none;
-}
-
-html {
-  font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }

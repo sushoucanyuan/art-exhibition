@@ -9,12 +9,16 @@
         <p>{{$t('m.address')}}</p>
         <p>{{$t('m.tel')}}</p>
       </div>
-      <div>
-        <p>{{$t('m.visit')}}</p>
-        <p>{{$t('m.infomation')}}</p>
-        <p>{{$t('m.artistic')}}</p>
-        <p>{{$t('m.contact')}}</p>
-      </div>      
+      <div v-if="high != undefined && low != undefined">
+        <div class="weather">
+          <img class="weather-img" src="/static/weather.png">
+          <div>
+            <div>武汉天气</div>
+            <div>{{high}}℃ | {{low}}℃</div>
+          </div>
+        </div>
+        <div class="weather-src">天气来源：心知天气</div>
+      </div>
     </div>
     <div class="third">
       <div>
@@ -34,20 +38,37 @@
 </template>
 
 <script>
+  import { getWeather } from '@/api'
+
   export default {
-
+    data() {
+      return {
+        high: undefined,
+        low: undefined
+      }
+    },
+    methods: {
+      getWeather
+    },
+    beforeMount() {
+      this.getWeather().then(({ high, low }) => {
+        this.high = high
+        this.low = low
+      })
+    }
   }
-
 </script>
 
 <style lang="scss">
   @import "../../assets/scss/mobile/theme.scss";
 
   #mobile-footer {
+    color: #4d4d4f;
+    font-weight: bold;
     margin-top: 4rem;
     padding: 1rem $main-padding 1.5rem;
     background-color: $footer-backgroundColor;
-    .left{
+    .left {
       max-width: 70%;
     }
     > div {
@@ -57,10 +78,19 @@
       > div {
         display: inline-block;
         font-size: 0.6rem;
-        line-height: 1.4rem;
+        line-height: 2rem;
         vertical-align: bottom;
-        &.third {
-          align-items: center;
+        .weather {
+          display: flex;
+          align-items: flex-start;
+          line-height: 1.8;
+          .weather-img {
+            width: 2.8rem;
+            margin-right: 0.5rem;
+          }
+        }
+        .weather-src{
+          color: #808080;
         }
         > img {
           width: 6.5rem;

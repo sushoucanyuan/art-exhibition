@@ -65,7 +65,7 @@
       display: inline-block;
       transition: 0.4s;
       &.pc-link-active {
-        color: $link-color;
+        color: #f97d56;
       }
       &::after {
         content: "";

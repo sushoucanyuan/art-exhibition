@@ -64,7 +64,7 @@
       display: flex;
       justify-content: space-between;
       margin-top: 1rem;
-      color: $mark-color;
+      color: $link-color;
     }
     > .imgs {
       display: flex;

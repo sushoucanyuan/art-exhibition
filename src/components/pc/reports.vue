@@ -49,10 +49,11 @@
         flex-wrap: wrap;
         display: flex;
         align-items: flex-start;
-        min-height: 570px;
-        padding-top: 30px;
+        min-height: 660px;
+        padding-top: 20px;
         > .news-item {
           $img-height: 160px;
+          cursor: pointer;
           box-sizing: border-box;
           width: 50%;
           padding-top: 16px;
@@ -75,7 +76,16 @@
             font-size: 14px;
             line-height: 20px;
             letter-spacing: 1px;
-            padding: 15px 0 8px;
+            padding: 12px 0 8px;
+          }
+          > .news-title{
+            $line-height: 22px;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: $line-height;
+            letter-spacing: 1px;
+            height: 2 * $line-height;
+            overflow: hidden;
           }
           > .news-description {
             $line-height: 22px;
@@ -83,6 +93,7 @@
             line-height: $line-height;
             letter-spacing: 1px;
             height: 3 * $line-height;
+            margin-top: 4px;
             overflow: hidden;
           }
         }

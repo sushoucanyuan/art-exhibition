@@ -2,6 +2,13 @@ import axios from 'axios'
 
 axios.defaults.baseURL = '/open/api/'
 
+export const getTopBannerList = () =>
+  axios.get('getTopBannerList/1000')
+  .then(({ data }) => data.map(item => {
+    let { id, picurl } = item
+    return { id, picurl }
+  }))
+
 export const getTopNewsList = () =>
   axios.get('getNewlist/1', {
     params: {
@@ -59,8 +66,8 @@ export const getNews = ({ type, page }) =>
       paperIndex: page
     }
   }).then(({ data }) => data.map(item => {
-    let { id, publishAt, picurl, info } = item
-    return { id, publishAt, picurl, info }
+    let { id, publishAt, picurl, title, info } = item
+    return { id, publishAt, picurl, title, info }
   }))
 
 export const getNewsCount = ({ type }) =>
@@ -68,3 +75,11 @@ export const getNewsCount = ({ type }) =>
 
 export const getNew = ({ id }) =>
   axios.get('getNew/' + id).then(({ data }) => data)
+
+export const getWeather = () =>
+  axios.get('getWeather').then(({ data }) =>
+  //axios.get('getWeather.substring(25)').then(({ data }) =>  
+    axios.get(data, {
+      baseURL: ''
+    }).then(({ data }) => data.results[0].daily[0])
+  )
