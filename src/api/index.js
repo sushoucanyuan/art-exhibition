@@ -77,9 +77,4 @@ export const getNew = ({ id }) =>
   axios.get('getNew/' + id).then(({ data }) => data)
 
 export const getWeather = () =>
-  axios.get('getWeather').then(({ data }) =>
-  //axios.get('getWeather.substring(25)').then(({ data }) =>  
-    axios.get(data, {
-      baseURL: ''
-    }).then(({ data }) => data.results[0].daily[0])
-  )
+  axios.get('getWeather').then(({ data }) => data.results[0].daily[0])
