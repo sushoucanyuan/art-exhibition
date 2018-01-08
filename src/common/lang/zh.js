@@ -1,7 +1,7 @@
 export const m = {
     index: '首页',//首页
     aboutUs: '关于我们',//关于我们
-    artistCollection: '参展艺术家·作品',//参展艺术家·作品
+    artistCollection: '参展艺术家<i class="icon-yuandian-copy"></i>作品',//参展艺术家·作品
     news: '展览报道',//展览报道
     notes: '观展须知',//观展须知
     aboutBiennale: '关于双年展',//关于双年展

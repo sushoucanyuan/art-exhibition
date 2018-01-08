@@ -5,7 +5,7 @@
       <img class="logo" src="/static/logo.png" alt="东湖雕塑生态双年展" @click="$router.push({name: 'index'})">
       <nav>
         <router-link class="link" :to="{name: 'about-us'}" active-class="link-active">{{$t('m.aboutUs')}}</router-link>
-        <router-link class="link" :to="{name: 'artists-and-works'}" active-class="link-active">{{$t('m.artistCollection')}}</router-link>
+        <router-link class="link" :to="{name: 'artists-and-works'}" active-class="link-active" v-html="$t('m.artistCollection')"></router-link>
         <router-link class="link" :to="{name: 'reports'}" active-class="link-active">{{$t('m.news')}}</router-link>
         <router-link class="link" :to="{name: 'must-know'}" active-class="link-active">{{$t('m.notes')}}</router-link>
       </nav>

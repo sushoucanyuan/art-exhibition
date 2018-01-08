@@ -12,7 +12,7 @@
     <nav :class="{opened}">
       <div class="links">
         <router-link :class="{cn: lang}" :to="{name: 'about-us'}" @click.native="opened = false">{{$t('m.aboutUs')}}</router-link>
-        <router-link :class="{cn: lang}" :to="{name: 'artists-and-works'}" @click.native="opened = false">{{$t('m.artistCollection')}}</router-link>
+        <router-link :class="{cn: lang}" :to="{name: 'artists-and-works'}" @click.native="opened = false" v-html="$t('m.artistCollection')"></router-link>
         <router-link :class="{cn: lang}" :to="{name: 'reports'}" @click.native="opened = false">{{$t('m.news')}}</router-link>
         <router-link :class="{cn: lang}" :to="{name: 'must-know'}" @click.native="opened = false">{{$t('m.notes')}}</router-link>        
       </div>
@@ -79,7 +79,7 @@
       $odd-margin: 7vw;
       $even-margin: 6vw;
       $odd-margin_cn: 15vw;
-      $even-margin_cn: 12vw;
+      $even-margin_cn: 10vw;
       $leave: 100vw - $odd-margin -$even-margin;
       $leave_cn: 100vw - $odd-margin_cn -$even-margin_cn;
       $border-color: rgba(100, 100, 100, 0.5);

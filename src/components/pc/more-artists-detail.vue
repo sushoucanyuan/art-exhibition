@@ -3,7 +3,7 @@
 
     <div class="pc-subpage-container">
       <el-breadcrumb class="pc-subpage-breadcrumb" separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{name: 'artists-and-works'}">{{$t('m.artistCollection')}}</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{name: 'artists-and-works'}"><span v-html="$t('m.artistCollection')"></span></el-breadcrumb-item>
         <el-breadcrumb-item :to="{name: 'more-artists'}">{{$t('m.moreArtist')}}</el-breadcrumb-item>
         <el-breadcrumb-item>{{name}}</el-breadcrumb-item>
       </el-breadcrumb>

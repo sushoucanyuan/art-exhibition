@@ -1,30 +1,53 @@
 @font-face {
-  font-family: 'iconfont';  /* project id 495402 */
-  src: url('//at.alicdn.com/t/font_495402_u725pcvbrnovfgvi.eot');
-  src: url('//at.alicdn.com/t/font_495402_u725pcvbrnovfgvi.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_495402_u725pcvbrnovfgvi.woff') format('woff'),
-  url('//at.alicdn.com/t/font_495402_u725pcvbrnovfgvi.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_495402_u725pcvbrnovfgvi.svg#iconfont') format('svg');
+  font-family: 'iconfont';
+  /* project id 495402 */
+  src: url('//at.alicdn.com/t/font_495402_0tui9imsc3wpzaor.eot');
+  src: url('//at.alicdn.com/t/font_495402_0tui9imsc3wpzaor.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_495402_0tui9imsc3wpzaor.woff') format('woff'), url('//at.alicdn.com/t/font_495402_0tui9imsc3wpzaor.ttf') format('truetype'), url('//at.alicdn.com/t/font_495402_0tui9imsc3wpzaor.svg#iconfont') format('svg');
 }
 
-[class*=" icon-"], [class^=icon-] {
-  font-family:"iconfont" !important;
-  font-size:16px;
-  font-style:normal;
+[class*=" icon-"],
+[class^=icon-] {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-menu:before { content: "\e630"; }
+.icon-menu:before {
+  content: "\e630";
+}
 
-.icon-search:before { content: "\e6ac"; }
+.icon-search:before {
+  content: "\e6ac";
+}
 
-.icon-viewgallery:before { content: "\e6b4"; }
+.icon-viewgallery:before {
+  content: "\e6b4";
+}
 
-.icon-viewlist:before { content: "\e6b5"; }
+.icon-viewlist:before {
+  content: "\e6b5";
+}
 
-.icon-accountfilling:before { content: "\e732"; }
+.icon-accountfilling:before {
+  content: "\e732";
+}
 
-.icon-pic-filling:before { content: "\e802"; }
+.icon-pic-filling:before {
+  content: "\e802";
+}
 
-.icon-fenxiang:before { content: "\e624"; }
+.icon-yuandian-copy{
+  font-size: 14px;
+  
+}
+
+.icon-yuandian-copy:before {
+  content: "\e6e7";
+  font-size: 14px;
+}
+
+.icon-fenxiang:before {
+  content: "\e624";
+}
