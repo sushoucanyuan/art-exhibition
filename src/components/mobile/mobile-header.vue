@@ -119,11 +119,11 @@
             margin-right: $even-margin;
           }
           &.cn:nth-child(odd) {
-            width: 0.5 * $leave_cn;
+            width: 0.45 * $leave_cn;
             margin-right: $odd-margin_cn;
           }
           &.cn:nth-child(even) {
-            width: 0.5 * $leave_cn;
+            width: 0.55 * $leave_cn;
             margin-right: $even-margin_cn;
           }
         }
